@@ -1,0 +1,32 @@
+#loginPageBody{
+    height: 100vh;
+    background-color: #5e5122;
+}
+
+#loginInnerRow{
+    background: linear-gradient(to right, #544616, #57370D) ;
+    border-radius: 5px;
+}
+
+form.user .form-control-user {
+    border-radius: 20px;
+    padding: 1.4rem 1rem;
+    background-color: #5e5122;
+    border: 2px solid palegoldenrod;
+    color: palegoldenrod;
+}
+
+form.user .form-control-user::placeholder {
+    color: rgba(238, 232, 170, 0.4);
+}
+
+#loginBrandNameText{
+    color: palegoldenrod;
+    font-weight: 200;
+}
+
+form.user .btn-user {
+    border-radius: 20px;
+    background:  #442a08;
+    color: palegoldenrod;
+}
