@@ -7,11 +7,9 @@ import lk.ijse.gdse66.backend.services.CustomerService;
 import lk.ijse.gdse66.backend.services.exceptions.DuplicateRecordException;
 import lk.ijse.gdse66.backend.services.exceptions.NotFoundException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -28,32 +26,33 @@ public class CustomerServiceImpl implements CustomerService {
     public void saveCustomer(CustomerDTO customerDTO) {
         if(customerRepo.existsById(customerDTO.getCode())){
             throw new DuplicateRecordException("Customer with id " + customerDTO.getCode() + " already exists");
+        }else{
+            customerRepo.save(mapper.map(customerDTO, Customer.class));
         }
-        customerRepo.save(mapper.map(customerDTO, Customer.class));
     }
 
     @Override
     public void updateCustomer(CustomerDTO customerDTO) {
-        if(customerRepo.existsById(customerDTO.getCode())){
-            customerRepo.save(mapper.map(customerDTO, Customer.class));
-        }else{
+        if(!customerRepo.existsById(customerDTO.getCode())){
             throw new NotFoundException("No such customer to update | Customer Id: " + customerDTO.getCode());
+        }else{
+            customerRepo.save(mapper.map(customerDTO, Customer.class));
         }
     }
 
     @Override
-    public boolean deleteCustomer(String id) {
-        return false;
+    public boolean deleteCustomer(String code) {
+        if(customerRepo.existsById(code)){
+            customerRepo.deleteById(code);
+            return true;
+        }else{
+            throw new NotFoundException("No such customer to delete | Customer Id: " + code);
+        }
     }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
         return customerRepo.findAll().stream().map(customer -> mapper.map(customer, CustomerDTO.class)).toList();
-    }
-
-    @Override
-    public CustomerDTO searchCustomer(String id) {
-        return null;
     }
 
     @Override
@@ -67,5 +66,10 @@ public class CustomerServiceImpl implements CustomerService {
         }else{
             return lastCustomer.getCode();
         }
+    }
+
+    @Override
+    public List<CustomerDTO> searchCustomersByName(String prefix) {
+        return customerRepo.findAllByNameStartingWith(prefix).stream().map(customer -> mapper.map(customer, CustomerDTO.class)).toList();
     }
 }

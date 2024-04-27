@@ -116,7 +116,7 @@
     color: palegoldenrod;
 }
 
-.select-field option.disabled{
+.select-field option[disabled]{
     color: #ccc246 !important;
 }
 
@@ -159,18 +159,23 @@
 }
 
 .brown-btn:hover{
-    background-color: #675b2f;
+    background-color: rgba(196, 190, 133, 0.8);
     color: palegoldenrod;
 }
 
-.clear-btn{
+.brown-btn:disabled{
+    background-color: #736531;
+    color: rgba(238, 232, 170, 0.34);
+}
+
+.reset-btn{
     background-color: #442a08;
     color: palegoldenrod;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.clear-btn:hover{
+.reset-btn:hover{
     background-color: #6c4006;
     color: palegoldenrod;
 }
@@ -188,5 +193,30 @@
 .brown-scrollbar::-webkit-scrollbar-thumb {
     background-color: palegoldenrod;
     border-radius: 5px;
+}
+
+.btn-getall {
+    border-radius: 0px 0.35rem 0.35rem 0px;
+    border: 1px solid palegoldenrod;
+}
+
+.search-field{
+    background-color: #907f42;
+    border: 1px solid palegoldenrod;
+    border-right: none;
+    color: palegoldenrod;
+}
+
+.search-field::placeholder{
+    color: rgba(238, 232, 170, 0.34);
+}
+
+.search-field:focus{
+    background-color: #907f42;
+    color: palegoldenrod;
+    border: none;
+    box-shadow: none;
+    border: 1px solid palegoldenrod;
+    border-right: none;
 }
 /* end of topbar + content */

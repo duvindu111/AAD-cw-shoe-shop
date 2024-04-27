@@ -14,8 +14,8 @@ public interface CustomerService {
 
     List<CustomerDTO> getAllCustomers();
 
-    CustomerDTO searchCustomer(String id);
-
     String getLastId();
+
+    List<CustomerDTO> searchCustomersByName(String prefix);
 
 }

@@ -86,6 +86,7 @@
             <!-- Start of Content -->
             <div class="container-fluid">
 
+<!--                text-fields-->
                 <div class="row">
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="cust_code" class="form-label input-label">Customer Code</label>
@@ -98,7 +99,7 @@
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="cust_gender" class="form-label input-label">Gender</label>
                         <select id="cust_gender" class="form-select form-control select-field" aria-label="Default select example">
-                            <option class="disabled">Select Gender</option>
+                            <option class="" disabled selected>Select Gender</option>
                             <option value="MALE">Male</option>
                             <option value="FEMALE">Female</option>
                         </select>
@@ -162,13 +163,31 @@
                         <label for="cust_email" class="form-label input-label">Email</label>
                         <input type="email" class="form-control input-field" id="cust_email">
                     </div>
+                    <div class="col-sm-6 col-xl-4 mb-4 d-none">
+                        <label for="cust_last_purchase" class="form-label input-label">Last Purchase</label>
+                        <input type="email" class="form-control input-field" id="cust_last_purchase">
+                    </div>
                 </div>
+
+<!--                buttons-->
                 <div class="row py-2 px-3">
                     <button id="btnAdd" type="button" class="btn mr-2 brown-btn">Add</button>
-                    <button id="btnUpdate" type="button" class="btn mr-2 brown-btn">Update</button>
-                    <button id="btnDelete" type="button" class="btn mr-2 brown-btn">Delete</button>
-                    <button id="btnClear" type="button" class="btn clear-btn">Clear</button>
+                    <button disabled id="btnUpdate" type="button" class="btn mr-2 brown-btn">Update</button>
+                    <button disabled id="btnDelete" type="button" class="btn mr-2 brown-btn">Delete</button>
+                    <button id="btnReset" type="button" class="btn reset-btn">Reset</button>
                 </div>
+
+<!--                search tab-->
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-sm-8 ">
+                        <div class="input-group mb-2 mt-5">
+                            <input id="searchField"  type="text" class="form-control search-field" placeholder="Search By Name">
+                            <button class="btn brown-btn btn-getall" type="button" id="btnGetAll">Get All</button>
+                        </div>
+                    </div>
+                </div>
+
+<!--                table-->
                 <table id="tableCustomer" class="table table-responsive table-border-radius-5 mb-5 mt-4 brown-scrollbar">
                     <thead class="brownTableHead">
                     <tr>
@@ -186,12 +205,6 @@
                     </tr>
                     </thead>
                     <tbody id="tableCustomerBody" class="brownTableBody">
-<!--                        <tr>-->
-<!--                            <th scope="row">1</th>-->
-<!--                            <td>Mark</td>-->
-<!--                            <td>Otto</td>-->
-<!--                            <td>@mdo</td>-->
-<!--                        </tr>-->
                     </tbody>
                 </table>
             </div>
