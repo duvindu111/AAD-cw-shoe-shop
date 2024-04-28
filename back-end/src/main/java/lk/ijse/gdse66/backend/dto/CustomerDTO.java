@@ -51,9 +51,11 @@ public class CustomerDTO implements Serializable {
     private String addressLine5;
 
     @NotBlank(message = "Contact number is mandatory")
+    @Pattern(regexp = "^\\+94\\d{9}$|^(0\\d{9})$|^(0\\d{2}-\\d{7})$", message = "Invalid contact number")
     private String contact;
 
     @NotBlank(message = "Email is mandatory")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email address")
     private String email;
 
     private Timestamp recentPurchaseDate;

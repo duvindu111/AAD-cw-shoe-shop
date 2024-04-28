@@ -219,4 +219,8 @@
     border: 1px solid palegoldenrod;
     border-right: none;
 }
+
+.error-label{
+    display: none;
+}
 /* end of topbar + content */
