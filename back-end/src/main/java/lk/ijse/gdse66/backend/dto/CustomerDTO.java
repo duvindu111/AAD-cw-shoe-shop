@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.backend.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -18,7 +19,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class CustomerDTO implements Serializable {
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Code is mandatory")
     @Pattern(regexp = "^CUS-\\d+$", message = "Invalid Code")
     private String code;
 
@@ -55,7 +56,7 @@ public class CustomerDTO implements Serializable {
     private String contact;
 
     @NotBlank(message = "Email is mandatory")
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email address")
+    @Email(message = "Invalid email address")
     private String email;
 
     private Timestamp recentPurchaseDate;

@@ -91,22 +91,6 @@ $("#btnUpdate").click(function (){
         let email = $("#cust_email").val();
         let last_purchase = $("#cust_last_purchase").val();
 
-        console.log(code);
-        console.log(name);
-        console.log(gender);
-        console.log(loyalty_joined_date);
-        console.log(loyalty_level);
-        console.log(loyalty_points);
-        console.log(dob);
-        console.log(add_line_1);
-        console.log(add_line_2);
-        console.log(add_line_3);
-        console.log(add_line_4);
-        console.log(add_line_5);
-        console.log(contact);
-        console.log(email);
-        console.log(last_purchase);
-
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/customer/update',
             method: 'PATCH',
@@ -438,6 +422,11 @@ function validateFields(){
     let name = $("#cust_name").val()
     let contact = $("#cust_contact").val();
     let email = $("#cust_email").val();
+    // let add_line_1 = $("#add_line_1").val();
+    // let add_line_2 = $("#add_line_2").val();
+    // let add_line_3 = $("#add_line_3").val();
+    // let add_line_4 = $("#add_line_4").val();
+    // let add_line_5 = $("#add_line_5").val();
 
     let validated = true;
     if (!validate(code, /^CUS-\d+$/)) {
@@ -460,6 +449,31 @@ function validateFields(){
         clearErrorLabel("#cust_email");
         validated = false;
     }
+    // if (!validate(add_line_1, /^[a-zA-Z0-9\s.,-]*$/  )) {
+    //     $("#el_add_line_1").css("display", "block");
+    //     clearErrorLabel("#cust_email");
+    //     validated = false;
+    // }
+    // if (!validate(add_line_2, /^[a-zA-Z0-9\s.,-]*$/  )) {
+    //     $("#el_add_line_2").css("display", "block");
+    //     clearErrorLabel("#cust_email");
+    //     validated = false;
+    // }
+    // if (!validate(add_line_3, /^[a-zA-Z0-9\s.,-]*$/  )) {
+    //     $("#el_add_line_3").css("display", "block");
+    //     clearErrorLabel("#cust_email");
+    //     validated = false;
+    // }
+    // if (!validate(add_line_4, /^[a-zA-Z0-9\s.,-]*$/  )) {
+    //     $("#el_add_line_4").css("display", "block");
+    //     clearErrorLabel("#cust_email");
+    //     validated = false;
+    // }
+    // if (!validate(add_line_5, /^[a-zA-Z0-9\s.,-]*$/  )) {
+    //     $("#el_add_line_5").css("display", "block");
+    //     clearErrorLabel("#cust_email");
+    //     validated = false;
+    // }
 
     return validated;
 }
