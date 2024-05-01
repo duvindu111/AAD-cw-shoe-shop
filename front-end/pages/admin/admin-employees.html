@@ -103,9 +103,10 @@
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="emp_name" class="form-label input-label">Profile Picture</label>
                         <div class="file-input-container input-field">
-                            <input class="" type="file" id="fileInput"
+                            <input class="" type="file" id="emp_profile_pic_hidden" accept="image/*"
                                    onchange="displaySelectedFile(this)">
-                            <input class="w-100 h-100 bg-transparent border-0 text-palegoldenrod form-control" id="selectedFile">
+                            <input class="w-100 h-100 bg-transparent border-0 text-palegoldenrod form-control"
+                                   id="emp_profile_pic_visible">
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
@@ -148,16 +149,16 @@
                         <label for="emp_branch" class="form-label input-label">Attached Branch</label>
                         <select id="emp_branch" class="form-select form-control select-field">
                             <option class="" disabled selected>Select Branch</option>
-                            <option value="ADMIN">Branch 1</option>
-                            <option value="ADMIN">Branch 2</option>
-                            <option value="ADMIN">Branch 3</option>
-                            <option value="ADMIN">Branch 4</option>
-                            <option value="ADMIN">Branch 5</option>
-                            <option value="ADMIN">Branch 6</option>
-                            <option value="ADMIN">Branch 7</option>
-                            <option value="ADMIN">Branch 8</option>
-                            <option value="ADMIN">Branch 9</option>
-                            <option value="ADMIN">Branch 10</option>
+                            <option value="Branch 1">Branch 1</option>
+                            <option value="Branch 2">Branch 2</option>
+                            <option value="Branch 3">Branch 3</option>
+                            <option value="Branch 4">Branch 4</option>
+                            <option value="Branch 5">Branch 5</option>
+                            <option value="Branch 6">Branch 6</option>
+                            <option value="Branch 7">Branch 7</option>
+                            <option value="Branch 8">Branch 8</option>
+                            <option value="Branch 9">Branch 9</option>
+                            <option value="Branch 10">Branch 10</option>
                         </select>
                     </div>
                     <div class="col-12 text-center">
@@ -194,9 +195,9 @@
                         </small></label>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_email" class="form-label input-label">Email</label>
-                        <input type="email" class="form-control input-field" id="supp_email">
-                        <label id="el_cust_email" class="error-label text-danger"><small>Invalid email address
+                        <label for="emp_email" class="form-label input-label">Email</label>
+                        <input type="email" class="form-control input-field" id="emp_email">
+                        <label id="el_emp_email" class="error-label text-danger"><small>Invalid email address
                         </small></label>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
@@ -233,19 +234,27 @@
                 </div>
 
 <!--                table-->
-                <table id="tableSupplier" class="table table-responsive table-border-radius-5 mb-5 mt-4 brown-scrollbar">
+                <table id="tableEmployee" class="table table-responsive table-border-radius-5 mb-5 mt-4 brown-scrollbar">
                     <thead class="brownTableHead">
                     <tr>
                         <th scope="col">Code</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Category</th>
+                        <th scope="col">Profile Pic</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Access Role</th>
+                        <th scope="col">Date Of Birth</th>
+                        <th scope="col">Date Of Join</th>
+                        <th scope="col">Attached Branch</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Mobile Number</th>
-                        <th scope="col">Landline Number</th>
+                        <th scope="col">Contact Number</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Inform In Emergency(Name)</th>
+                        <th scope="col">Emergency Contact</th>
                     </tr>
                     </thead>
-                    <tbody id="tableSupplierBody" class="brownTableBody">
+                    <tbody id="tableEmployeeBody" class="brownTableBody">
                     </tbody>
                 </table>
             </div>

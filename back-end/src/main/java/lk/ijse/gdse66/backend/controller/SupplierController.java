@@ -1,7 +1,6 @@
 package lk.ijse.gdse66.backend.controller;
 
 import jakarta.validation.Valid;
-import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
 import lk.ijse.gdse66.backend.dto.SupplierDTO;
 import lk.ijse.gdse66.backend.services.SupplierService;
