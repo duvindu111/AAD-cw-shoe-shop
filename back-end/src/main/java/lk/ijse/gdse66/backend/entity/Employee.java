@@ -35,6 +35,8 @@ public class Employee {
     private String addressLine4;
     private String addressLine5;
     private String contact;
+
+    @Column(unique = true)
     private String email;
     private String guardianName;
     private String guardianContact;

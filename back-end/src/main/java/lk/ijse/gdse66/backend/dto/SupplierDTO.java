@@ -5,6 +5,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lk.ijse.gdse66.backend.util.CategoryEnum;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class SupplierDTO {
     @Pattern(regexp = "[A-Za-z\\s]+", message = "Invalid Name")
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Category is mandatory")
     private CategoryEnum category;
 
     private String addressLine1;

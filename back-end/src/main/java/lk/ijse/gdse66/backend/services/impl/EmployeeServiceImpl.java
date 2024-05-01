@@ -1,9 +1,7 @@
 package lk.ijse.gdse66.backend.services.impl;
 
 import lk.ijse.gdse66.backend.dto.EmployeeDTO;
-import lk.ijse.gdse66.backend.dto.SupplierDTO;
 import lk.ijse.gdse66.backend.entity.Employee;
-import lk.ijse.gdse66.backend.entity.Supplier;
 import lk.ijse.gdse66.backend.repo.EmployeeRepo;
 import lk.ijse.gdse66.backend.services.EmployeeService;
 import lk.ijse.gdse66.backend.services.exceptions.DuplicateRecordException;
@@ -11,9 +9,6 @@ import lk.ijse.gdse66.backend.services.exceptions.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -31,7 +26,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void saveEmployee(EmployeeDTO employeeDTO) {
         if(employeeRepo.existsById(employeeDTO.getCode())){
             throw new DuplicateRecordException("Employee with id " + employeeDTO.getCode() + " already exists");
+        }else if(employeeRepo.existsByEmail(employeeDTO.getEmail())){
+            throw new DuplicateRecordException("Employee with email " + employeeDTO.getEmail() + " already exists");
         }else{
+
             employeeRepo.save(mapper.map(employeeDTO, Employee.class));
         }
     }
@@ -40,6 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void updateEmployee(EmployeeDTO employeeDTO) {
         if(!employeeRepo.existsById(employeeDTO.getCode())){
             throw new NotFoundException("No such employee to update | employee Id: " + employeeDTO.getCode());
+        }else if(employeeRepo.existsByEmail(employeeDTO.getEmail())){
+            throw new DuplicateRecordException("Employee with email " + employeeDTO.getEmail() + " already exists");
         }else{
             employeeRepo.save(mapper.map(employeeDTO, Employee.class));
         }
@@ -47,7 +47,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public boolean deleteEmployee(String id) {
-        return false;
+        if(employeeRepo.existsById(id)){
+            employeeRepo.deleteById(id);
+            return true;
+        }else{
+            throw new NotFoundException("No such employee to delete | Employee Id: " + id);
+        }
     }
 
     @Override
@@ -69,6 +74,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public List<EmployeeDTO> searchEmployeesByName(String prefix) {
-        return List.of();
+        return employeeRepo.findAllByNameStartingWith(prefix).stream().map(employee -> mapper.map(employee, EmployeeDTO.class)).toList();
     }
 }

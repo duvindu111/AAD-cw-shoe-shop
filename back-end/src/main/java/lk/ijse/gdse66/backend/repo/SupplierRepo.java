@@ -13,4 +13,6 @@ public interface SupplierRepo extends JpaRepository<Supplier, String> {
     Supplier findTopByOrderByCodeDesc();
 
     List<Supplier> findAllByNameStartingWith(String codePrefix);
+
+    Boolean existsByEmail(String email);
 }

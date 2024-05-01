@@ -31,6 +31,8 @@ public class SupplierServiceImpl implements SupplierService {
     public void saveSupplier(SupplierDTO supplierDTO) {
         if(supplierRepo.existsById(supplierDTO.getCode())){
             throw new DuplicateRecordException("Supplier with id " + supplierDTO.getCode() + " already exists");
+        }else if(supplierRepo.existsByEmail(supplierDTO.getEmail())){
+            throw new DuplicateRecordException("Supplier with email " + supplierDTO.getEmail() + " already exists");
         }else{
             supplierRepo.save(mapper.map(supplierDTO, Supplier.class));
         }
@@ -40,6 +42,8 @@ public class SupplierServiceImpl implements SupplierService {
     public void updateSupplier(SupplierDTO supplierDTO) {
         if(!supplierRepo.existsById(supplierDTO.getCode())){
             throw new NotFoundException("No such supplier to update | Supplier Id: " + supplierDTO.getCode());
+        }else if(supplierRepo.existsByEmail(supplierDTO.getEmail())){
+            throw new DuplicateRecordException("Supplier with email " + supplierDTO.getEmail() + " already exists");
         }else{
             supplierRepo.save(mapper.map(supplierDTO, Supplier.class));
         }
@@ -75,6 +79,5 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public List<SupplierDTO> searchSuppliersByName(String prefix) {
         return supplierRepo.findAllByNameStartingWith(prefix).stream().map(supplier -> mapper.map(supplier, SupplierDTO.class)).toList();
-
     }
 }

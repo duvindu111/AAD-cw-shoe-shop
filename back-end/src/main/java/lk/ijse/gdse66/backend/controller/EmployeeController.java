@@ -1,5 +1,9 @@
 package lk.ijse.gdse66.backend.controller;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ValidationException;
+import jakarta.validation.Validator;
+import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
 import lk.ijse.gdse66.backend.dto.SupplierDTO;
@@ -10,25 +14,27 @@ import lk.ijse.gdse66.backend.util.GenderEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1/employee")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
-    public EmployeeService employeeService;
-    public ResponseDTO responseDTO;
+    private EmployeeService employeeService;
+    private ResponseDTO responseDTO;
+    private Validator validator;
 
-    public EmployeeController(EmployeeService employeeService, ResponseDTO responseDTO) {
+    public EmployeeController(EmployeeService employeeService, ResponseDTO responseDTO, Validator validator) {
         this.employeeService = employeeService;
         this.responseDTO = responseDTO;
+        this.validator = validator;
     }
 
     @GetMapping("/getlastid")
@@ -49,16 +55,23 @@ public class EmployeeController {
                      @RequestParam("contact") String contact, @RequestParam("email") String email,
                      @RequestParam("guardianName") String guardianName, @RequestParam("guardianContact") String guardianContact)
             throws IOException {
-        System.out.println(profilePic);
+
         byte[] bytes = profilePic.getBytes();
         String base64ProfilePic = Base64.getEncoder().encodeToString(bytes);
-        System.out.println(base64ProfilePic);
 
         EmployeeDTO employeeDTO = new EmployeeDTO(code, name, base64ProfilePic, gender, civilStatus, designation, role, dob,
                 joinDate, branch, addressLine1, addressLine2, addressLine3, addressLine4, addressLine5, contact, email,
                 guardianName, guardianContact);
 
-        employeeService.saveEmployee(employeeDTO);
+        Set<ConstraintViolation<EmployeeDTO>> violations = validator.validate(employeeDTO);
+        if (!violations.isEmpty()) {
+            for (ConstraintViolation<EmployeeDTO> violation : violations) {
+                System.out.println(violation.getMessage());
+            }
+            throw new ValidationException("Data Validation Failed.");
+        }else{
+            employeeService.saveEmployee(employeeDTO);
+        }
     }
 
     @PatchMapping(value = "/update")
@@ -74,16 +87,29 @@ public class EmployeeController {
                      @RequestParam("contact") String contact, @RequestParam("email") String email,
                      @RequestParam("guardianName") String guardianName, @RequestParam("guardianContact") String guardianContact)
             throws IOException {
-        System.out.println(profilePic);
+
         byte[] bytes = profilePic.getBytes();
         String base64ProfilePic = Base64.getEncoder().encodeToString(bytes);
-        System.out.println(base64ProfilePic);
 
         EmployeeDTO employeeDTO = new EmployeeDTO(code, name, base64ProfilePic, gender, civilStatus, designation, role, dob,
                 joinDate, branch, addressLine1, addressLine2, addressLine3, addressLine4, addressLine5, contact, email,
                 guardianName, guardianContact);
 
-        employeeService.updateEmployee(employeeDTO);
+        Set<ConstraintViolation<EmployeeDTO>> violations = validator.validate(employeeDTO);
+        if (!violations.isEmpty()) {
+            for (ConstraintViolation<EmployeeDTO> violation : violations) {
+                System.out.println(violation.getMessage());
+            }
+            throw new ValidationException("Data Validation Failed.");
+        }else{
+            employeeService.updateEmployee(employeeDTO);
+        }
+    }
+
+    @DeleteMapping("/delete/{code}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCustomer(@PathVariable String code){
+        employeeService.deleteEmployee(code);
     }
 
     @GetMapping("/getall")
@@ -94,6 +120,23 @@ public class EmployeeController {
             responseDTO.setCode(HttpStatus.OK);
             responseDTO.setMessage("Success");
             responseDTO.setData(supplierList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/search/{prefix}")
+    public ResponseEntity<ResponseDTO> searchEmployeesByName(@PathVariable String prefix){
+        try{
+            List<EmployeeDTO> employeeList = employeeService.searchEmployeesByName(prefix);
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(employeeList);
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         }catch (Exception exc){
             responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);

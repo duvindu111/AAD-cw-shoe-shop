@@ -4,135 +4,168 @@ $(document).ready(function () {
 });
 
 $("#btnAdd").click(function (){
-    let code = $("#emp_code").val();
-    let name = $("#emp_name").val();
-    let profile_pic = $("#emp_profile_pic_hidden")[0].files[0];
-    let gender = $("#emp_gender").val()
-    let status = $("#emp_status").val()
-    let designation = $("#emp_designation").val()
-    let access_role = $("#emp_role").val()
-    let dob = $("#emp_dob").val();
-    let date_of_join = $("#emp_date_of_join").val();
-    let attached_branch = $("#emp_branch").val();
-    let add_line_1 = $("#add_line_1").val();
-    let add_line_2 = $("#add_line_2").val();
-    let add_line_3 = $("#add_line_3").val();
-    let add_line_4 = $("#add_line_4").val();
-    let add_line_5 = $("#add_line_5").val();
-    let contact = $("#emp_contact").val();
-    let email = $("#emp_email").val();
-    let guardian_name = $("#emp_guardian_name").val();
-    let guardian_contact = $("#emp_guardian_contact").val();
+    let validated = validateFields();
+    if(validated){
+        let code = $("#emp_code").val();
+        let name = $("#emp_name").val();
+        let profile_pic = $("#emp_profile_pic_hidden")[0].files[0];
+        let gender = $("#emp_gender").val()
+        let status = $("#emp_status").val()
+        let designation = $("#emp_designation").val()
+        let access_role = $("#emp_role").val()
+        let dob = $("#emp_dob").val();
+        let date_of_join = $("#emp_date_of_join").val();
+        let attached_branch = $("#emp_branch").val();
+        let add_line_1 = $("#add_line_1").val();
+        let add_line_2 = $("#add_line_2").val();
+        let add_line_3 = $("#add_line_3").val();
+        let add_line_4 = $("#add_line_4").val();
+        let add_line_5 = $("#add_line_5").val();
+        let contact = $("#emp_contact").val();
+        let email = $("#emp_email").val();
+        let guardian_name = $("#emp_guardian_name").val();
+        let guardian_contact = $("#emp_guardian_contact").val();
 
-    console.log(profile_pic);
+        console.log(profile_pic);
 
-    let formData = new FormData();
-    formData.append("code", code);
-    formData.append("name", name);
-    formData.append("profilePic", profile_pic);
-    formData.append("gender", gender);
-    formData.append("civilStatus", status);
-    formData.append("designation", designation);
-    formData.append("role", access_role);
-    formData.append("dob", dob);
-    formData.append("joinDate", date_of_join);
-    formData.append("branch", attached_branch);
-    formData.append("addressLine1", add_line_1);
-    formData.append("addressLine2", add_line_2);
-    formData.append("addressLine3", add_line_3);
-    formData.append("addressLine4", add_line_4);
-    formData.append("addressLine5", add_line_5);
-    formData.append("contact", contact);
-    formData.append("email", email);
-    formData.append("guardianName", guardian_name);
-    formData.append("guardianContact", guardian_contact);
+        let formData = new FormData();
+        formData.append("code", code);
+        formData.append("name", name);
+        formData.append("profilePic", profile_pic);
+        formData.append("gender", gender);
+        formData.append("civilStatus", status);
+        formData.append("designation", designation);
+        formData.append("role", access_role);
+        formData.append("dob", dob);
+        formData.append("joinDate", date_of_join);
+        formData.append("branch", attached_branch);
+        formData.append("addressLine1", add_line_1);
+        formData.append("addressLine2", add_line_2);
+        formData.append("addressLine3", add_line_3);
+        formData.append("addressLine4", add_line_4);
+        formData.append("addressLine5", add_line_5);
+        formData.append("contact", contact);
+        formData.append("email", email);
+        formData.append("guardianName", guardian_name);
+        formData.append("guardianContact", guardian_contact);
 
-    $.ajax({
-        url: 'http://localhost:8080/hello_shoes/api/v1/employee/save',
-        method: 'POST',
-        processData: false,
-        contentType: false,
-        data: formData,
-        success: function (response) {
-            alert("Employee details saved successfully");
-            clearFields();
+        $.ajax({
+            url: 'http://localhost:8080/hello_shoes/api/v1/employee/save',
+            method: 'POST',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (response) {
+                alert("Employee details saved successfully");
+                clearFields();
 
-            $("#btnUpdate").prop("disabled", true);
-            $("#btnDelete").prop("disabled", true);
-            $("#btnAdd").prop("disabled", false);
+                $("#btnUpdate").prop("disabled", true);
+                $("#btnDelete").prop("disabled", true);
+                $("#btnAdd").prop("disabled", false);
 
-            getAllEmployees();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error(jqXHR);
-            alert(jqXHR.responseJSON.message);
-        }
-    });
+                getAllEmployees();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR);
+                alert(jqXHR.responseJSON.message);
+            }
+        });
+    }
 })
 
 $("#btnUpdate").click(function (){
+    let validated = validateFields();
+    if(validated){
+        let code = $("#emp_code").val();
+        let name = $("#emp_name").val();
+        let profile_pic = $("#emp_profile_pic_hidden")[0].files[0];
+        let gender = $("#emp_gender").val()
+        let status = $("#emp_status").val()
+        let designation = $("#emp_designation").val()
+        let access_role = $("#emp_role").val()
+        let dob = $("#emp_dob").val();
+        let date_of_join = $("#emp_date_of_join").val();
+        let attached_branch = $("#emp_branch").val();
+        let add_line_1 = $("#add_line_1").val();
+        let add_line_2 = $("#add_line_2").val();
+        let add_line_3 = $("#add_line_3").val();
+        let add_line_4 = $("#add_line_4").val();
+        let add_line_5 = $("#add_line_5").val();
+        let contact = $("#emp_contact").val();
+        let email = $("#emp_email").val();
+        let guardian_name = $("#emp_guardian_name").val();
+        let guardian_contact = $("#emp_guardian_contact").val();
+
+        let formData = new FormData();
+        formData.append("code", code);
+        formData.append("name", name);
+        formData.append("profilePic", profile_pic);
+        formData.append("gender", gender);
+        formData.append("civilStatus", status);
+        formData.append("designation", designation);
+        formData.append("role", access_role);
+        formData.append("dob", dob);
+        formData.append("joinDate", date_of_join);
+        formData.append("branch", attached_branch);
+        formData.append("addressLine1", add_line_1);
+        formData.append("addressLine2", add_line_2);
+        formData.append("addressLine3", add_line_3);
+        formData.append("addressLine4", add_line_4);
+        formData.append("addressLine5", add_line_5);
+        formData.append("contact", contact);
+        formData.append("email", email);
+        formData.append("guardianName", guardian_name);
+        formData.append("guardianContact", guardian_contact);
+
+        $.ajax({
+            url: 'http://localhost:8080/hello_shoes/api/v1/employee/update',
+            method: 'PATCH',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (response) {
+                alert("Employee details updated successfully");
+                clearFields();
+
+                $("#btnUpdate").prop("disabled", true);
+                $("#btnDelete").prop("disabled", true);
+                $("#btnAdd").prop("disabled", false);
+
+                getAllEmployees();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR);
+                alert(jqXHR.responseJSON.message);
+            }
+        });
+    }
+})
+
+$("#btnDelete").click(function (){
     let code = $("#emp_code").val();
-    let name = $("#emp_name").val();
-    let profile_pic = $("#emp_profile_pic_hidden")[0].files[0];
-    let gender = $("#emp_gender").val()
-    let status = $("#emp_status").val()
-    let designation = $("#emp_designation").val()
-    let access_role = $("#emp_role").val()
-    let dob = $("#emp_dob").val();
-    let date_of_join = $("#emp_date_of_join").val();
-    let attached_branch = $("#emp_branch").val();
-    let add_line_1 = $("#add_line_1").val();
-    let add_line_2 = $("#add_line_2").val();
-    let add_line_3 = $("#add_line_3").val();
-    let add_line_4 = $("#add_line_4").val();
-    let add_line_5 = $("#add_line_5").val();
-    let contact = $("#emp_contact").val();
-    let email = $("#emp_email").val();
-    let guardian_name = $("#emp_guardian_name").val();
-    let guardian_contact = $("#emp_guardian_contact").val();
 
-    let formData = new FormData();
-    formData.append("code", code);
-    formData.append("name", name);
-    formData.append("profilePic", profile_pic);
-    formData.append("gender", gender);
-    formData.append("civilStatus", status);
-    formData.append("designation", designation);
-    formData.append("role", access_role);
-    formData.append("dob", dob);
-    formData.append("joinDate", date_of_join);
-    formData.append("branch", attached_branch);
-    formData.append("addressLine1", add_line_1);
-    formData.append("addressLine2", add_line_2);
-    formData.append("addressLine3", add_line_3);
-    formData.append("addressLine4", add_line_4);
-    formData.append("addressLine5", add_line_5);
-    formData.append("contact", contact);
-    formData.append("email", email);
-    formData.append("guardianName", guardian_name);
-    formData.append("guardianContact", guardian_contact);
+    let result = window.confirm("Do you want to proceed?");
+    if (result) {
+        $.ajax({
+            url: 'http://localhost:8080/hello_shoes/api/v1/employee/delete/' + code,
+            method: 'DELETE',
+            contentType: 'application/json',
+            success: function (response) {
+                alert("Employee deleted successfully");
+                clearFields();
 
-    $.ajax({
-        url: 'http://localhost:8080/hello_shoes/api/v1/employee/update',
-        method: 'PATCH',
-        processData: false,
-        contentType: false,
-        data: formData,
-        success: function (response) {
-            alert("Employee details updated successfully");
-            clearFields();
+                $("#btnUpdate").prop("disabled", true);
+                $("#btnDelete").prop("disabled", true);
+                $("#btnAdd").prop("disabled", false);
 
-            $("#btnUpdate").prop("disabled", true);
-            $("#btnDelete").prop("disabled", true);
-            $("#btnAdd").prop("disabled", false);
-
-            getAllEmployees();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error(jqXHR);
-            alert(jqXHR.responseJSON.message);
-        }
-    });
+                getAllEmployees();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseJSON.message);
+                console.error(jqXHR);
+            }
+        });
+    }
 })
 
 $("#btnReset").click(function (){
@@ -141,6 +174,87 @@ $("#btnReset").click(function (){
     $("#btnAdd").prop("disabled", false);
     $("#btnUpdate").prop("disabled", true);
     $("#btnDelete").prop("disabled", true);
+})
+
+$("#searchField").keyup(function (){
+    let prefix = $("#searchField").val();
+
+    if(prefix == ""){
+        getAllEmployees();
+        return;
+    }
+
+    $.ajax({
+        url: "http://localhost:8080/hello_shoes/api/v1/employee/search/" + prefix,
+        method: "GET",
+        success: function (response) {
+            console.log(response);
+
+            if(response.data.length == 0){
+                $("#tableEmployeeBody").empty();
+                let row = `<tr>
+                    <td class="py-5" colspan="11">No Result Found</td>                                       
+                    </tr>`;
+                $('#tableEmployeeBody').append(row);
+                return;
+            }
+
+            $("#tableEmployeeBody").empty();
+            $.each(response.data, function (index, employee) {
+                let row = `<tr>
+                    <td>${employee.code}</td>  
+                    <td>${employee.name}</td>  
+                    <td>
+                        <input class="d-none" disabled value="${employee.profilePic}">
+                        <div class="profile-pic" style="width: 60px; height: 60px; border-radius: 50%; 
+                        background-size: cover;
+                        background-image: url(data:image;base64,${employee.profilePic});"></div>
+                    </td>
+
+                    <td>${employee.gender}</td>
+                    <td>${employee.civilStatus}</td>
+                    <td>${employee.designation}</td>
+                    <td>${employee.role}</td>
+                    <td>${employee.dob}</td>
+                    <td>${employee.joinDate}</td>
+                    <td>${employee.branch}</td>
+                    <td class="td-address"></td>  
+                    <td>${employee.contact}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.guardianName}</td>
+                    <td>${employee.guardianContact}</td>                   
+                    </tr>`;
+                $('#tableEmployeeBody').append(row);
+
+                // address
+                if(employee.addressLine1 != ""){
+                    let line1 = `<span id="span_add_1">${employee.addressLine1}</span>, `;
+                    $(".td-address:last").append(line1);
+                }
+                if(employee.addressLine2 != ""){
+                    let line2 = `<span id="span_add_2">${employee.addressLine2}</span>, `;
+                    $(".td-address:last").append(line2);
+                }
+                let line3 = `<span id="span_add_3">${employee.addressLine3}</span>, `;
+                let line4 = `<span id="span_add_4">${employee.addressLine4}</span>, `;
+                let line5 = `<span id="span_add_5">${employee.addressLine5}</span>. `;
+                $(".td-address:last").append(line3);
+                $(".td-address:last").append(line4);
+                $(".td-address:last").append(line5);
+            });
+
+            onTableRowClicked();
+        },
+        error: function (jqxhr, textStatus, error) {
+            alert("searching employees failed.")
+            console.log(jqxhr);
+        }
+    })
+})
+
+$("#btnGetAll").click(function (){
+    getAllEmployees();
+    $("#searchField").val("");
 })
 
 function onTableRowClicked() {
@@ -319,4 +433,109 @@ function clearFields() {
     $("#emp_email").val("");
     $("#emp_guardian_name").val("");
     $("#emp_guardian_contact").val("");
+}
+
+function validateFields(){
+    let requiredFieldsAreFilled = checkRequiredFields();
+
+    if(!requiredFieldsAreFilled){
+        return false;
+    }
+
+    let code = $("#emp_code").val();
+    let name = $("#emp_name").val()
+    let status = $("#emp_status").val()
+    let email = $("#emp_email").val();
+    let contact = $("#emp_contact").val();
+    let guardian_contact = $("#emp_guardian_contact").val();
+    let guardian_name = $("#emp_guardian_name").val();
+    let designation = $("#emp_designation").val();
+
+    let validated = true;
+    if (!validate(code, /^EMP-\d+$/)) {
+        $("#el_emp_code").css("display", "block");
+        clearErrorLabel("#emp_code");
+        validated = false;
+    }
+    if (!validate(name, /^[A-Za-z\s]+$/)) {
+        $("#el_emp_name").css("display", "block");
+        clearErrorLabel("#emp_name");
+        validated = false;
+    }
+    if (!validate(status, /^[A-Za-z\s]+$/)) {
+        $("#el_emp_status").css("display", "block");
+        clearErrorLabel("#emp_status");
+        validated = false;
+    }
+    if (!validate(email, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+        $("#el_emp_email").css("display", "block");
+        clearErrorLabel("#emp_email");
+        validated = false;
+    }
+    if (!validate(contact, /^(\+ ?)?(?:[0-9] ?){6,14}[0-9]$|^$/)) {
+        $("#el_emp_contact").css("display", "block");
+        clearErrorLabel("#emp_contact");
+        validated = false;
+    }
+    if (!validate(guardian_contact, /^(\+ ?)?(?:[0-9] ?){6,14}[0-9]$|^$/)) {
+        $("#el_emp_guardian_contact").css("display", "block");
+        clearErrorLabel("#emp_guardian_contact");
+        validated = false;
+    }
+    if (!validate(designation, /^[A-Za-z\s]+$/)) {
+        $("#el_emp_designation").css("display", "block");
+        clearErrorLabel("#emp_designation");
+        validated = false;
+    }
+    if (!validate(guardian_name, /^[A-Za-z\s]+$|^$/)) {
+        $("#el_emp_guardian_name").css("display", "block");
+        clearErrorLabel("#emp_guardian_name");
+        validated = false;
+    }
+
+    return validated;
+}
+
+function checkRequiredFields() {
+    if(
+        $("#emp_code").val() == "" || $("#emp_name").val() == "" || $("#emp_profile_pic_hidden").val() == "" ||
+        $("#emp_gender").val() == null || $("#emp_status").val() == "" || $("#emp_designation").val() == "" ||
+        $("#emp_role").val() == null || $("#emp_dob").val() == "" || $("#emp_date_of_join").val() == "" ||
+        $("#emp_branch").val() == "" || $("#add_line_3").val() == "" || $("#add_line_4").val() == "" ||
+        $("#add_line_5").val() == "" || $("#emp_contact").val() == "" || $("#emp_email").val() == ""
+    ){
+        if ($("#emp_code").val() == "") alert("Employee Code is empty");
+        else if ($("#emp_name").val() == "") alert("Employee Name is empty");
+        else if ($("#emp_profile_pic_hidden").val() == "") alert("No profile picture selected");
+        else if ($("#emp_gender").val() == null) alert("Gender is not selected");
+        else if ($("#emp_status").val() == "") alert("Status is empty");
+        else if ($("#emp_designation").val() == "") alert("Designation is empty");
+        else if ($("#emp_role").val() == null) alert("Access Role is not selected");
+        else if ($("#emp_dob").val() == "") alert("Date Of Birth is empty");
+        else if ($("#emp_date_of_join").val() == "") alert("Date Of Join is empty");
+        else if ($("#emp_branch").val() == null) alert("Branch is not selected");
+        else if ($("#add_line_3").val() == "") alert("Main City is empty");
+        else if ($("#add_line_4").val() == "") alert("Main State is empty");
+        else if ($("#add_line_5").val() == "") alert("Postal Code is empty");
+        else if ($("#emp_contact").val() == "") alert("Employee Contact is empty");
+        else if ($("#emp_email").val() == "") alert("Email is empty");
+
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function validate(value, regex){
+    if(regex.test(value)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function clearErrorLabel(elementId) {
+    $(elementId).on("keyup", function(){
+        $(elementId + "+ label").css("display", "none");
+    })
 }
