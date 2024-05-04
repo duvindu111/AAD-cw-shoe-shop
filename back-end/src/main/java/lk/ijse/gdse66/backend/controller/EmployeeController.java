@@ -3,24 +3,21 @@ package lk.ijse.gdse66.backend.controller;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
-import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
-import lk.ijse.gdse66.backend.dto.SupplierDTO;
-import lk.ijse.gdse66.backend.entity.Employee;
 import lk.ijse.gdse66.backend.services.EmployeeService;
 import lk.ijse.gdse66.backend.util.AccessRoleEnum;
 import lk.ijse.gdse66.backend.util.GenderEnum;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.*;
+import java.util.Base64;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/employee")
