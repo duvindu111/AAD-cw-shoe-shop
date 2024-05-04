@@ -1,0 +1,19 @@
+#btnAddSizeQty{
+    background-color: #442a08;
+    color: palegoldenrod;
+}
+
+.size-qty-container{
+    background-color: #907f42;
+    border-radius: 5px;
+}
+
+.btn-remove{
+    align-self: end;
+}
+
+.btn-remove i{
+    color: #442a08;
+    font-size: 30px;
+}
+

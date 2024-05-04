@@ -20,4 +20,5 @@ public class ShoeSize {
 
     private int size;
     private int quantity;
+    private String status;
 }

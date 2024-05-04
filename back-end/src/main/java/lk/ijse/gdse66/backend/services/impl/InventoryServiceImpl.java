@@ -3,6 +3,7 @@ package lk.ijse.gdse66.backend.services.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.gdse66.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.backend.dto.InventoryPlusQtyDTO;
+import lk.ijse.gdse66.backend.dto.ShoeSizeDTO;
 import lk.ijse.gdse66.backend.entity.Inventory;
 import lk.ijse.gdse66.backend.entity.ShoeSize;
 import lk.ijse.gdse66.backend.entity.Supplier;
@@ -33,37 +34,25 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public void saveItem(InventoryPlusQtyDTO inventoryPlusQtyDTO) {
-        if(inventoryRepo.existsById(inventoryPlusQtyDTO.getItem_code())){
-            throw new DuplicateRecordException("Item with id " + inventoryPlusQtyDTO.getItem_code() + " already exists");
+    public void saveItem(InventoryDTO inventoryDTO) {
+        if(inventoryRepo.existsById(inventoryDTO.getItem_code())){
+            throw new DuplicateRecordException("Item with id " + inventoryDTO.getItem_code() + " already exists");
         }else{
 
-            Supplier supplier = supplierRepo.findByCode(inventoryPlusQtyDTO.getSupplier_code());
+            Supplier supplier = supplierRepo.findByCode(inventoryDTO.getSupplier_code());
 
-//            InventoryDTO inventoryDTO = new InventoryDTO(
-//                    inventoryPlusQtyDTO.getItem_code(),
-//                    inventoryPlusQtyDTO.getItem_name(),
-//                    inventoryPlusQtyDTO.getItem_picture(),
-//                    inventoryPlusQtyDTO.getCategory(),
-//                    inventoryPlusQtyDTO.getSize(),
-//                    inventoryPlusQtyDTO.getSupplier_code(),
-//                    inventoryPlusQtyDTO.getSupplier_name(),
-//                    inventoryPlusQtyDTO.getPrice_sale(),
-//                    inventoryPlusQtyDTO.getPrice_buy(),
-//                    inventoryPlusQtyDTO.getExpected_profit(),
-//                    inventoryPlusQtyDTO.getProfit_margin(),
-//                    inventoryPlusQtyDTO.getStatus()
-//            );
-
-            Inventory inventory = mapper.map(inventoryPlusQtyDTO, Inventory.class);
+            Inventory inventory = mapper.map(inventoryDTO, Inventory.class);
             inventory.setSupplier_code(supplier);
             inventoryRepo.save(inventory);
 
-            ShoeSize shoeSize = new ShoeSize();
-            shoeSize.setItem_code(inventory);
-            shoeSize.setSize(inventoryPlusQtyDTO.getSize());
-            shoeSize.setQuantity(inventoryPlusQtyDTO.getQty());
-            shoeSizeRepo.save(shoeSize);
+            for (ShoeSizeDTO dto : inventoryDTO.getShoe_size_list()) {
+                ShoeSize shoeSize = new ShoeSize();
+                shoeSize.setItem_code(inventory);
+                shoeSize.setSize(dto.getSize());
+                shoeSize.setQuantity(dto.getQuantity());
+                shoeSize.setStatus(dto.getStatus());
+                shoeSizeRepo.save(shoeSize);
+            }
         }
     }
 

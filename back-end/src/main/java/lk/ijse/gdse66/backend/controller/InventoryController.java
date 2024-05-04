@@ -46,6 +46,7 @@ public class InventoryController {
 
     @GetMapping("/getSupplierCodes")
     public List<String> getSupplierCodes(){
+        System.out.println("getSupplierCodes");
         return inventoryService.getSupplierCodes();
     }
 
@@ -57,7 +58,7 @@ public class InventoryController {
 
     @PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody InventoryPlusQtyDTO inventoryPlusQtyDTO /*@RequestParam("item_code") String item_code, @RequestParam("item_name") String item_name,
+    public void save(@RequestBody InventoryDTO inventoryDTO /*@RequestParam("item_code") String item_code, @RequestParam("item_name") String item_name,
                      @RequestParam("item_picture") String item_pic, @RequestParam("category") String category,
                      @RequestParam("size") int size, @RequestParam("supplier_code") String supp_code,
                      @RequestParam("supplier_name") String supp_name, @RequestParam("price_sale") Double price_sale,
@@ -65,7 +66,8 @@ public class InventoryController {
                      @RequestParam("profit_margin") Double profit_margin, @RequestParam("status") String status,
                      @RequestParam("qty") int qty*/){
 
-        inventoryService.saveItem(inventoryPlusQtyDTO);
+        System.out.println(inventoryDTO);
+        inventoryService.saveItem(inventoryDTO);
 
     }
 

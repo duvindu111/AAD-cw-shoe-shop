@@ -16,7 +16,6 @@ public class Inventory {
     @Column(columnDefinition = "LONGTEXT")
     private String item_picture;
     private String category;
-    private int size;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "supplier_code",referencedColumnName = "code", nullable = false)
@@ -27,5 +26,4 @@ public class Inventory {
     private Double price_buy;
     private Double expected_profit;
     private Double profit_margin;
-    private String status;
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface InventoryService {
 
-    void saveItem(InventoryPlusQtyDTO inventoryDTO);
+    void saveItem(InventoryDTO inventoryDTO);
 
     void updateItem(InventoryDTO inventoryDTO);
 
