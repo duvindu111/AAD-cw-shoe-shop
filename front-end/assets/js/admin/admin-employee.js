@@ -281,7 +281,6 @@ function onTableRowClicked() {
         let guardian_name = row.children().eq(13).text();
         let guardian_contact = row.children().eq(14).text();
 
-
         // setting the value to the file picker
         let byteCharacters = atob(profile_pic);
         let byteNumbers = new Array(byteCharacters.length);

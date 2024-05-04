@@ -245,4 +245,9 @@
 .text-palegoldenrod{
     color: palegoldenrod;
 }
+
+select[disabled]{
+    background-color: #907f42 !important;
+    color: #d2cb86;
+}
 /* end of topbar + content */

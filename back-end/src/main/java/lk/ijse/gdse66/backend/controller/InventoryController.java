@@ -3,10 +3,7 @@ package lk.ijse.gdse66.backend.controller;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
-import lk.ijse.gdse66.backend.dto.EmployeeDTO;
-import lk.ijse.gdse66.backend.dto.InventoryDTO;
-import lk.ijse.gdse66.backend.dto.InventoryPlusQtyDTO;
-import lk.ijse.gdse66.backend.dto.ResponseDTO;
+import lk.ijse.gdse66.backend.dto.*;
 import lk.ijse.gdse66.backend.entity.Inventory;
 import lk.ijse.gdse66.backend.services.InventoryService;
 import lk.ijse.gdse66.backend.util.AccessRoleEnum;
@@ -14,6 +11,7 @@ import lk.ijse.gdse66.backend.util.GenderEnum;
 import org.apache.tomcat.util.json.JSONFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,17 +56,54 @@ public class InventoryController {
 
     @PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody InventoryDTO inventoryDTO /*@RequestParam("item_code") String item_code, @RequestParam("item_name") String item_name,
-                     @RequestParam("item_picture") String item_pic, @RequestParam("category") String category,
-                     @RequestParam("size") int size, @RequestParam("supplier_code") String supp_code,
-                     @RequestParam("supplier_name") String supp_name, @RequestParam("price_sale") Double price_sale,
-                     @RequestParam("price_buy") Double price_buy, @RequestParam("expected_profit") Double profit,
-                     @RequestParam("profit_margin") Double profit_margin, @RequestParam("status") String status,
-                     @RequestParam("qty") int qty*/){
-
-        System.out.println(inventoryDTO);
+    public void save(@RequestBody InventoryDTO inventoryDTO){
         inventoryService.saveItem(inventoryDTO);
-
     }
 
+    @PatchMapping(value = "/update")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@RequestBody InventoryDTO inventoryDTO){
+        System.out.println(inventoryDTO);
+        inventoryService.updateItem(inventoryDTO);
+    }
+
+    @DeleteMapping("/delete/{code}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteItem(@PathVariable String code){
+        inventoryService.deleteItem(code);
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<ResponseDTO> getAllItems(){
+        try{
+            List<InventoryDTO> itemList = inventoryService.getAllItems();
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(itemList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/search/{prefix}")
+    public ResponseEntity<ResponseDTO> searchItemsByName(@PathVariable String prefix){
+        try{
+            List<InventoryDTO> itemList = inventoryService.searchByName(prefix);
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(itemList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

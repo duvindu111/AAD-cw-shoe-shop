@@ -11,19 +11,26 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Inventory {
     @Id
-    private String item_code;
-    private String item_name;
-    @Column(columnDefinition = "LONGTEXT")
-    private String item_picture;
+    @Column(name = "item_code")
+    private String itemCode;
+    @Column(name = "item_name")
+    private String itemName;
+    @Column(name = "item_picture", columnDefinition = "LONGTEXT")
+    private String itemPicture;
     private String category;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "supplier_code",referencedColumnName = "code", nullable = false)
-    private Supplier supplier_code;
+    private Supplier supplierCode;
 
-    private String supplier_name;
-    private Double price_sale;
-    private Double price_buy;
-    private Double expected_profit;
-    private Double profit_margin;
+    @Column(name = "supplier_name")
+    private String supplierName;
+    @Column(name = "price_sale")
+    private Double priceSale;
+    @Column(name = "price_buy")
+    private Double priceBuy;
+    @Column(name = "expected_profit")
+    private Double expectedProfit;
+    @Column(name = "profit_margin")
+    private Double profitMargin;
 }

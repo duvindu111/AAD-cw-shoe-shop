@@ -12,15 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InventoryDTO {
-    private String item_code;
-    private String item_name;
-    private String item_picture;
+    private String itemCode;
+    private String itemName;
+    private String itemPicture;
     private String category;
-    private String supplier_code;
-    private String supplier_name;
-    private Double price_sale;
-    private Double price_buy;
-    private Double expected_profit;
-    private Double profit_margin;
+    private String supplierCode;
+    private String supplierName;
+    private Double priceSale;
+    private Double priceBuy;
+    private Double expectedProfit;
+    private Double profitMargin;
     private List<ShoeSizeDTO> shoe_size_list;
 }

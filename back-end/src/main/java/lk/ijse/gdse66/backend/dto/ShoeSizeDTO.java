@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoeSizeDTO {
-    private String item_code;
+    private String itemCode;
     private int size;
     private int quantity;
     private String status;
