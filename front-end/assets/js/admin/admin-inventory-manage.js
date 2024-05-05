@@ -560,12 +560,29 @@ function validateFields(){
 }
 
 function checkRequiredFields() {
+    let sizeQtyValidation = true;
+    if($(".size-qty-container").length > 0){
+        $(".size-qty-container").each(function(index) {
+            var $container = $(this);
+            var item_size = $container.find("#item_size").val();
+            var item_quantity = $container.find("#item_quantity").val();
+            console.log(item_quantity);
+            if (item_size == null){
+                alert("Item Size is not selected");
+                sizeQtyValidation = false;
+            }
+            if (item_quantity == "" || item_quantity < 0){
+                alert("Item Quantity is empty or negative");
+                sizeQtyValidation = false;
+            }
+        });
+    }
+
     if(
         $("#item_code").val() == "" || $("#item_name").val() == "" || $("#item_pic_hidden").val() == "" ||
         $("#item_category").val() == null || $("#item_supp_code").val() == null || $("#item_supp_name").val() == "" ||
         $("#item_price_sale").val() == "" || $("#item_price_buy").val() == "" || $(".size-qty-container").length == 0 ||
-        $(".size-qty-container").length > 0 && ($(".size-qty-container").find("#item_size").val() == null ||
-        $(".size-qty-container").find("#item_quantity").val()=="" || $(".size-qty-container").find("#item_quantity").val() < 0)
+        !sizeQtyValidation
     ){
         if ($("#item_code").val() == "") alert("Item Code is empty");
         else if ($("#item_name").val() == "") alert("Item Name is empty");
@@ -576,22 +593,6 @@ function checkRequiredFields() {
         else if ($("#item_price_sale").val() == "") alert("Unit Price- Sale is empty");
         else if ($("#item_price_buy").val() == "") alert("Unit Price- Buy is empty");
         else if ($(".size-qty-container").length == 0) alert("Please select a size first");
-        else {
-            $(".size-qty-container").each(function(index) {
-                var $container = $(this);
-                var item_size = $container.find("#item_size").val();
-                var item_quantity = $container.find("#item_quantity").val();
-                console.log(item_quantity);
-                if (item_size == null){
-                    alert("Item Size is not selected");
-                    return false;
-                }
-                if (item_quantity == "" || item_quantity < 0){
-                    alert("Item Quantity is empty or negative");
-                    return false;
-                }
-            });
-        }
 
         return false;
     }else{

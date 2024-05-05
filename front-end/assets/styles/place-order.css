@@ -1,0 +1,28 @@
+#oid_row{
+    margin-top: 30px;
+}
+
+#item_row{
+    column-gap: 40px;
+    row-gap: 10px;
+}
+
+#size_row{
+    column-gap: 40px;
+    row-gap: 10px;
+}
+
+#customer_row{
+    column-gap: 40px;
+    row-gap: 10px;
+}
+
+#customer_loyalty_row{
+    column-gap: 40px;
+    row-gap: 10px;
+}
+
+#after-cart-row{
+    column-gap: 40px;
+    row-gap: 10px;
+}

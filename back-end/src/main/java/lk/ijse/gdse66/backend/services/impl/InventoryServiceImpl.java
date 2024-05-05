@@ -166,4 +166,56 @@ public class InventoryServiceImpl implements InventoryService {
 
         return inventoryDTOList;
     }
+
+    @Override
+    public List<InventoryDTO> getAllItemsByPrice(double minPrice, double maxPrice) {
+        List<Inventory> inventoryList = inventoryRepo.findByPriceSaleBetween(minPrice, maxPrice);
+        List<InventoryDTO> inventoryDTOList = inventoryList.stream().map(inventory -> {
+            InventoryDTO dto = mapper.map(inventory, InventoryDTO.class);
+            dto.setSupplierCode(inventory.getSupplierCode().getCode());
+            return dto;
+        }).collect(Collectors.toList());
+
+        for (InventoryDTO dto : inventoryDTOList) {
+            List<ShoeSize> shoeSizes = shoeSizeRepo.getAllByItemCode(dto.getItemCode());
+            List<ShoeSizeDTO> shoeSizeDTOList = new ArrayList<>();
+
+            for (ShoeSize shoeSize : shoeSizes) {
+                ShoeSizeDTO shoeSizeDTO = new ShoeSizeDTO();
+                shoeSizeDTO.setSize(shoeSize.getSize());
+                shoeSizeDTO.setQuantity(shoeSize.getQuantity());
+                shoeSizeDTO.setStatus(shoeSize.getStatus());
+                shoeSizeDTOList.add(shoeSizeDTO);
+            }
+            dto.setShoe_size_list(shoeSizeDTOList);
+        }
+
+        return inventoryDTOList;
+    }
+
+    @Override
+    public List<InventoryDTO> getAllItemsByGender(String value) {
+        List<Inventory> inventoryList = inventoryRepo.findByCategoryContaining(value);
+        List<InventoryDTO> inventoryDTOList = inventoryList.stream().map(inventory -> {
+            InventoryDTO dto = mapper.map(inventory, InventoryDTO.class);
+            dto.setSupplierCode(inventory.getSupplierCode().getCode());
+            return dto;
+        }).collect(Collectors.toList());
+
+        for (InventoryDTO dto : inventoryDTOList) {
+            List<ShoeSize> shoeSizes = shoeSizeRepo.getAllByItemCode(dto.getItemCode());
+            List<ShoeSizeDTO> shoeSizeDTOList = new ArrayList<>();
+
+            for (ShoeSize shoeSize : shoeSizes) {
+                ShoeSizeDTO shoeSizeDTO = new ShoeSizeDTO();
+                shoeSizeDTO.setSize(shoeSize.getSize());
+                shoeSizeDTO.setQuantity(shoeSize.getQuantity());
+                shoeSizeDTO.setStatus(shoeSize.getStatus());
+                shoeSizeDTOList.add(shoeSizeDTO);
+            }
+            dto.setShoe_size_list(shoeSizeDTOList);
+        }
+
+        return inventoryDTOList;
+    }
 }

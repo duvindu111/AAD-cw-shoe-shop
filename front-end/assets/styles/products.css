@@ -1,0 +1,97 @@
+#top-row{
+    margin-top: 30px;
+    background-color: #57370D;
+    border-radius: 5px;
+}
+
+#filterbutton{
+    height: 60px;
+    text-align: left;
+    background-color: #907f42;
+    color: palegoldenrod;
+    border: none;
+    border-radius: 5px;
+}
+
+#product-grid{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+    row-gap: 20px;
+}
+
+.card-img-top{
+    border-radius: 20px 20px 0px 0px;
+}
+
+#product-grid .card{
+    border-radius: 20px;
+    background: linear-gradient(to right, #907f42, #a19c6b);
+    color: palegoldenrod;
+    border: none;
+    box-shadow:
+            0 2px 4px rgba(0, 0, 0, 0.1), /* Top shadow */
+            0 4px 8px rgba(0, 0, 0, 0.1), /* Bottom shadow */
+            0 8px 16px rgba(0, 0, 0, 0.1); /* Bottom shadow */
+    transition: transform 0.3s ease;
+}
+
+#product-grid .card:hover{
+    transform: translateY(-5px);
+}
+
+@media all and (max-width: 1400px) {
+    #product-grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media all and (max-width: 1100px) {
+    #product-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media all and (max-width: 550px) {
+    #product-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+#min-price{
+    border-radius: 5px;
+    width: 100px;
+}
+
+#max-price{
+    border-radius: 5px;
+    width: 100px;
+}
+
+#price-search{
+    border-radius: 5px;
+    height: 35px;
+    border: none;
+}
+
+#name-search{
+    border-radius: 5px;
+    width: 400px;
+    max-width: 100%;
+}
+
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#radio-box-container{
+    column-gap: 40px;
+    row-gap: 20px;
+}
+
+#filter-reset{
+    border-radius: 5px;
+    border: none;
+}

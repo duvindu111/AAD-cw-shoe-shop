@@ -98,6 +98,10 @@
     color: palegoldenrod;
 }
 
+.input-field::placeholder{
+    color: rgba(238, 232, 170, 0.34);
+}
+
 .input-field[disabled]{
     background-color: #907f42;
     color: #d2cb86;

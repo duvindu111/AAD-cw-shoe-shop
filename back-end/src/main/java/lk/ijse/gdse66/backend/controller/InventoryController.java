@@ -107,4 +107,39 @@ public class InventoryController {
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/getAllByPrice/{min_price}/{max_price}")
+    public ResponseEntity<ResponseDTO> getAllItemsByPrice(@PathVariable double min_price, @PathVariable double max_price){
+        System.out.println(min_price + " " + max_price);
+        try{
+            List<InventoryDTO> itemList = inventoryService.getAllItemsByPrice(min_price, max_price);
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(itemList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/getAllByCategoryNamePart/{value}")
+    public ResponseEntity<ResponseDTO> getAllItemsByCategoryNamePart(@PathVariable String value){
+        try{
+            List<InventoryDTO> itemList = inventoryService.getAllItemsByGender(value);
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(itemList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

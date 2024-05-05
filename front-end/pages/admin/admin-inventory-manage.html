@@ -110,8 +110,72 @@
                         <label for="item_category" class="form-label input-label">Category</label>
                         <select id="item_category" class="form-select form-control select-field">
                             <option disabled selected>Select Category</option>
-                            <option class="shoe" value="FSM">FSM - Formal Shoe Male</option>
+                            <option class="shoe" value="FHM">FHM - Formal Heel Men</option>
+                            <option class="shoe" value="FFM">FFM - Formal Flats Men</option>
+                            <option class="shoe" value="FWM">FWM - Formal Wedges Men</option>
+                            <option class="shoe" value="FFFM">FFFM - Formal Flip Flops Men</option>
+                            <option class="shoe" value="FSDM">FSDM - Formal Sandals Men</option>
+                            <option class="shoe" value="FSM">FSM - Formal Shoe Men</option>
+                            <option class="shoe" value="FSLM">FSLM - Formal Slippers Men</option>
+                            <option class="shoe" value="FHW">FHW - Formal Heel Women</option>
+                            <option class="shoe" value="FFW">FFW - Formal Flats Women</option>
+                            <option class="shoe" value="FWW">FWW - Formal Wedges Women</option>
+                            <option class="shoe" value="FFFW">FFFW - Formal Flip Flops Women</option>
+                            <option class="shoe" value="FSDW">FSDW - Formal Sandals Women</option>
+                            <option class="shoe" value="FSW">FSW - Formal Shoe Women</option>
+                            <option class="shoe" value="FSLW">FSLW - Formal Slippers Women</option>
+
+                            <option class="shoe" value="CHM">CHM - Casual Heel Men</option>
+                            <option class="shoe" value="CFM">CFM - Casual Flats Men</option>
+                            <option class="shoe" value="CWM">CWM - Casual Wedges Men</option>
+                            <option class="shoe" value="CFFM">CFFM - Casual Flip Flops Men</option>
+                            <option class="shoe" value="CSDM">CSDM - Casual Sandals Men</option>
+                            <option class="shoe" value="CSM">CSM - Casual Shoe Men</option>
+                            <option class="shoe" value="CSLM">CSLM - Casual Slippers Men</option>
+                            <option class="shoe" value="CHW">CHW - Casual Heel Women</option>
+                            <option class="shoe" value="CFW">CFW - Casual Flats Women</option>
+                            <option class="shoe" value="CWW">CWW - Casual Wedges Women</option>
+                            <option class="shoe" value="CFFW">CFFW - Casual Flip Flops Women</option>
+                            <option class="shoe" value="CSDW">CSDW - Casual Sandals Women</option>
                             <option class="shoe" value="CSW">CSW - Casual Shoe Women</option>
+                            <option class="shoe" value="CSLW">CSLW - Casual Slippers Women</option>
+
+                            <option class="shoe" value="IHM">IHM - Industrial Heel Men</option>
+                            <option class="shoe" value="IFM">IFM - Industrial Flats Men</option>
+                            <option class="shoe" value="IWM">IWM - Industrial Wedges Men</option>
+                            <option class="shoe" value="IFFM">IFFM - Industrial Flip Flops Men</option>
+                            <option class="shoe" value="IWM">ISDM - Industrial Sandals Men</option>
+                            <option class="shoe" value="ISM">ISM - Industrial Shoe Men</option>
+                            <option class="shoe" value="IWM">ISLM - Industrial Slippers Men</option>
+                            <option class="shoe" value="IHW">IHW - Industrial Heel Women</option>
+                            <option class="shoe" value="IFW">IFW - Industrial Flats Women</option>
+                            <option class="shoe" value="IWW">IWW - Industrial Wedges Women</option>
+                            <option class="shoe" value="IFFW">IFFW - Industrial Flip Flops Women</option>
+                            <option class="shoe" value="ISDW">ISDW - Industrial Sandals Women</option>
+                            <option class="shoe" value="ISW">ISW - Industrial Shoe Women</option>
+                            <option class="shoe" value="ISLW">ISLW - Industrial Slippers Women</option>
+
+                            <option class="shoe" value="SHM">SHM - Sport Heel Men</option>
+                            <option class="shoe" value="SFM">SFM - Sport Flats Men</option>
+                            <option class="shoe" value="SWM">SWM - Sport Wedges Men</option>
+                            <option class="shoe" value="SFFM">SFFM - Sport Flip Flops Men</option>
+                            <option class="shoe" value="SSDM">SSDM - Sport Sandals Men</option>
+                            <option class="shoe" value="SSM">SSM - Sport Shoe Men</option>
+                            <option class="shoe" value="SSLM">SSLM - Sport Slippers Men</option>
+                            <option class="shoe" value="SHW">SHW - Sport Heel Women</option>
+                            <option class="shoe" value="SFW">SFW - Sport Flats Women</option>
+                            <option class="shoe" value="SWW">SWW - Sport Wedges Women</option>
+                            <option class="shoe" value="SFFW">SFFM - Sport Flip Flops Women</option>
+                            <option class="shoe" value="SSDW">SSDW - Sport Sandals Women</option>
+                            <option class="shoe" value="SSW">SSW - Sport Shoe Women</option>
+                            <option class="shoe" value="SSLW">SSLM - Sport Slippers Women</option>
+
+                            <option class="shoe" value="SHMP">SHMP - Shoe shampoo</option>
+                            <option class="shoe" value="POLB">POLB - Polish colors as Black</option>
+                            <option class="shoe" value="POLBR">POLBR - Polish colors as Brown</option>
+                            <option class="shoe" value="POLDBR">POLDBR - Polish colors as Dark Brown</option>
+                            <option class="shoe" value="SOF">SOF - Full Socks</option>
+                            <option class="shoe" value="SOH">SOH - Half Socks</option>
                         </select>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
@@ -157,7 +221,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
                                 <label for="item_quantity" class="form-label input-label">Quantity</label>
-                                <input type="number" class="form-control input-field" id="item_quantity" min="0">
+                                <input type="number" class="form-control input-field" id="item_quantity" min="0" oninput="validity.valid||(value='');">
                             </div>
                             <button type="button" class="btn-remove btn">
                                 <i class="fa-regular fa-circle-xmark"></i></button>

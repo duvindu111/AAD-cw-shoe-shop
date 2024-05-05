@@ -24,4 +24,8 @@ public interface InventoryService {
     String getSupplierName(String supp_code);
 
     List<InventoryDTO> searchByName(String codePrefix);
+
+    List<InventoryDTO> getAllItemsByPrice(double minPrice, double maxPrice);
+
+    List<InventoryDTO> getAllItemsByGender(String value);
 }

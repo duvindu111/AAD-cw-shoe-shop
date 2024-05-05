@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Products</title>
+
+<!--    google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<!--    bootstrap-->
+    <link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!--    font awesome-->
+    <script src="https://kit.fontawesome.com/f6b40d3bdc.js" crossorigin="anonymous"></script>
+
+<!--    common styles-->
+    <link href="../assets/styles/common.css" rel="stylesheet">
+
+<!--    unique styles-->
+    <link href="../assets/styles/products.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <div class="sidebar-brand-text mx-2">Hello, Shoes (Pvt) Ltd</div>
+        </a>
+        <div class="d-flex justify-content-end">
+            <button id="hamburgerIconInside" class="btn btn-link d-lg-none mr-3">
+<!--                <i class="fa fa-bars"></i>-->
+                <i class="fa-solid fa-circle-chevron-left"></i>
+                Hide
+            </button>
+        </div>
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active mt-3">
+            <a class="nav-link" href="admin-dashboard.html">
+                <span class="d-flex align-items-center">
+                <i class="fa-solid fa-tablet-screen-button mr-2"></i>
+                <span>Dashboard</span>
+                </span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="d-flex align-items-center">
+                <i class="fa-solid fa-tablet-screen-button mr-2"></i>
+                <span>Dashboard</span>
+                </span>
+            </a>
+        </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <!-- Header -->
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+
+                <!-- Hamburger Icon -->
+                <button id="hamburgerIconOutside" class="btn btn-link d-lg-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-profile rounded-circle"
+                                 src="">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Start of Content -->
+            <div class="container-fluid">
+
+                <div id="top-row" class="row">
+                    <div class="accordion w-100" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header mb-0">
+                                <button id="filterbutton" class="accordion-button w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <img class="pl-3" src="../assets/images/sort.png" style="width: 40px">
+                                    <h6 class="d-inline-block">Filter</h6>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                                <div class="accordion-body px-3 pb-3">
+                                    <div id="priceRow" class="container w-100 mx-0 px-0 mt-3">
+                                        <div class="row align-items-center">
+                                            <input  type="number" class="form-range input-field p-1" id="min-price" min="0"
+                                                    oninput="validity.valid||(value='');" placeholder="min-price">
+                                            <i class="fa-solid fa-minus mx-2 text-palegoldenrod"></i>
+                                            <input  type="number" class="input-field p-1" id="max-price" min="0"
+                                                    oninput="validity.valid||(value='');" placeholder="max-price">
+                                        </div>
+                                        <div class="row mt-2">
+                                            <button id="price-search" class="brown-btn">Filter</button>
+                                        </div>
+                                    </div>
+                                    <div id="nameRow" class="row w-100 mx-0 mt-3 align-items-center">
+                                        <input type="text" class="input-field p-1" id="name-search" placeholder="search by name">
+                                    </div>
+                                    <div id="radio-box-container" class="d-flex ">
+                                        <div class="d-inline-block filter-item-container">
+                                            <h6 class="mt-4 mb-3 filter-item-header text-palegoldenrod">By Gender</h6>
+                                            <div class="pb-4">
+                                                <div class="form-check py-2 mb-0">
+                                                    <input class="form-check-input rbGender p-2" type="radio" name="exampleRadios" id="rbMen" value="Men">
+                                                    <label class="form-check-label d-flex align-items-center ps-2 text-palegoldenrod" for="rbMen">
+                                                        Men
+                                                    </label>
+                                                </div>
+                                                <div class="form-check py-2 mb-0">
+                                                    <input class="form-check-input rbGender p-2" type="radio" name="exampleRadios" id="rbWomen" value="Women">
+                                                    <label class="form-check-label d-flex align-items-center ps-2 text-palegoldenrod" for="rbWomen">
+                                                        Women
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-inline-block filter-item-container">
+                                            <h6 class="mt-4 mb-3 filter-item-header text-palegoldenrod">By Occasion</h6>
+                                            <div class="pb-4">
+                                                <div class="form-check py-2 mb-0">
+                                                    <input class="form-check-input p-2 rbOccasion" type="radio" name="exampleRadios" id="rbFormal" value="Formal">
+                                                    <label class="form-check-label d-flex align-items-center ps-2 text-palegoldenrod" for="rbFormal">
+                                                        Formal
+                                                    </label>
+                                                </div>
+                                                <div class="form-check py-2 mb-0">
+                                                    <input class="form-check-input p-2 rbOccasion" type="radio" name="exampleRadios" id="rbCasual" value="Casual">
+                                                    <label class="form-check-label d-flex align-items-center ps-2 text-palegoldenrod" for="rbCasual">
+                                                        Casual
+                                                    </label>
+                                                </div>
+                                                <div class="form-check py-2 mb-0">
+                                                    <input class="form-check-input p-2 rbOccasion" type="radio" name="exampleRadios" id="rbIndustrial" value="Industrial">
+                                                    <label class="form-check-label d-flex align-items-center ps-2 text-palegoldenrod" for="rbIndustrial">
+                                                        Industrial
+                                                    </label>
+                                                </div>
+                                                <div class="form-check py-2 mb-0">
+                                                    <input class="form-check-input p-2 rbOccasion" type="radio" name="exampleRadios" id="rbSport" value="Sport">
+                                                    <label class="form-check-label d-flex align-items-center ps-2 text-palegoldenrod" for="rbSport">
+                                                        Sport
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <button id="filter-reset" class="brown-btn">Clear Filters</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product-grid" class="mb-5">
+
+                </div>
+
+            </div>
+            <!-- End of Content -->
+        </div>
+        <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="../../login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--common js --------------------- -->
+<!--jquery-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script src="../assets/js/common.js"></script>
+<!--end of common js --------------------- -->
+
+<!--uniqe js-->
+<script src="../assets/js/products.js"></script>
+</body>
+</html>
