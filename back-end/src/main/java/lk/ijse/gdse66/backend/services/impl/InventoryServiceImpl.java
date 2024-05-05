@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.backend.services.impl;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.backend.dto.InventoryPlusQtyDTO;

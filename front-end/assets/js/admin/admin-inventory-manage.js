@@ -15,7 +15,8 @@ $("#item_supp_code").on("change", function() {
 });
 
 $("#btnAdd").click(function (){
-
+    let validated = validateFields();
+    if(validated){
         let code = $("#item_code").val();
         let name = $("#item_name").val();
         let item_pic = $("#item_pic_hidden")[0].files[0];
@@ -75,70 +76,74 @@ $("#btnAdd").click(function (){
                 }
             });
         });
+    }
 })
 
 $("#btnUpdate").click(function (){
-    let code = $("#item_code").val();
-    let name = $("#item_name").val();
-    let item_pic = $("#item_pic_hidden")[0].files[0];
-    let category = $("#item_category option:selected").text();
-    let supp_code = $("#item_supp_code").val();
-    let supp_name = $("#item_supp_name").val();
-    let sale_price = $("#item_price_sale").val();
-    let buy_price = $("#item_price_buy").val();
+    let validated = validateFields();
+    if(validated){
+        let code = $("#item_code").val();
+        let name = $("#item_name").val();
+        let item_pic = $("#item_pic_hidden")[0].files[0];
+        let category = $("#item_category option:selected").text();
+        let supp_code = $("#item_supp_code").val();
+        let supp_name = $("#item_supp_name").val();
+        let sale_price = $("#item_price_sale").val();
+        let buy_price = $("#item_price_buy").val();
 
-    // calculations
-    let expected_profit = sale_price - buy_price;
-    let profit_margin = (expected_profit / sale_price) * 100;
-    // end of calculations
+        // calculations
+        let expected_profit = sale_price - buy_price;
+        let profit_margin = (expected_profit / sale_price) * 100;
+        // end of calculations
 
-    let shoe_size_list = [];
-    $(".size-qty-container").each(function (){
-        let size = $(this).find("#item_size").val();
-        let qty = $(this).find("#item_quantity").val();
+        let shoe_size_list = [];
+        $(".size-qty-container").each(function (){
+            let size = $(this).find("#item_size").val();
+            let qty = $(this).find("#item_quantity").val();
 
-        let status;
-        if(qty <= 0) {
-            status = "Not Available";
-        }else if(qty<10){
-            status = "Low";
-        }else{
-            status = "Available";
-        }
-
-        shoe_size_list.push({"item_code": code, "size": size, "quantity": qty, "status": status,});
-    });
-
-    let base64_item_pic;
-    fileToBase64(item_pic, function(base64String) {
-        base64_item_pic = base64String;
-
-        console.log(base64_item_pic);
-        $.ajax({
-            url: 'http://localhost:8080/hello_shoes/api/v1/inventory/update',
-            method: 'PATCH',
-            contentType: 'application/json',
-            data: JSON.stringify({"itemCode": code, "itemName": name, "itemPicture": base64_item_pic,
-                "category": category, "supplierCode": supp_code, "supplierName": supp_name, "priceSale": sale_price,
-                "priceBuy": buy_price, "expectedProfit": expected_profit,
-                "profitMargin": profit_margin, shoe_size_list: shoe_size_list}),
-            success: function (response) {
-                alert("Item details updated successfully");
-                clearFields();
-
-                $("#btnUpdate").prop("disabled", true);
-                $("#btnDelete").prop("disabled", true);
-                $("#btnAdd").prop("disabled", false);
-                $("#item_category").prop("disabled", false);
-
-                getAllItems();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(jqXHR);
-                alert(jqXHR.responseJSON.message);
+            let status;
+            if(qty <= 0) {
+                status = "Not Available";
+            }else if(qty<10){
+                status = "Low";
+            }else{
+                status = "Available";
             }
+
+            shoe_size_list.push({"item_code": code, "size": size, "quantity": qty, "status": status,});
         });
-    });
+
+        let base64_item_pic;
+        fileToBase64(item_pic, function(base64String) {
+            base64_item_pic = base64String;
+
+            console.log(base64_item_pic);
+            $.ajax({
+                url: 'http://localhost:8080/hello_shoes/api/v1/inventory/update',
+                method: 'PATCH',
+                contentType: 'application/json',
+                data: JSON.stringify({"itemCode": code, "itemName": name, "itemPicture": base64_item_pic,
+                    "category": category, "supplierCode": supp_code, "supplierName": supp_name, "priceSale": sale_price,
+                    "priceBuy": buy_price, "expectedProfit": expected_profit,
+                    "profitMargin": profit_margin, shoe_size_list: shoe_size_list}),
+                success: function (response) {
+                    alert("Item details updated successfully");
+                    clearFields();
+
+                    $("#btnUpdate").prop("disabled", true);
+                    $("#btnDelete").prop("disabled", true);
+                    $("#btnAdd").prop("disabled", false);
+                    $("#item_category").prop("disabled", false);
+
+                    getAllItems();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(jqXHR);
+                    alert(jqXHR.responseJSON.message);
+                }
+            });
+        });
+    }
 })
 
 $("#btnDelete").click(function (){
@@ -241,7 +246,15 @@ $("#searchField").keyup(function (){
 })
 
 $("#btnAddSizeQty").click(function (){
-    let element = ` <div class="size-qty-container w-100 d-flex flex-wrap py-1 mb-2">
+    let lastContainer = $(".size-qty-container:last");
+    var item_size = lastContainer.find("#item_size").val();
+    var item_quantity = lastContainer.find("#item_quantity").val();
+    if (item_size == null && lastContainer.length != 0){
+        alert("Item Size is not selected");
+    }else if ((item_quantity == "" || item_quantity < 0) && lastContainer.length !=0){
+        alert("Item Quantity is empty or negative");
+    }else{
+        let element = ` <div class="size-qty-container w-100 d-flex flex-wrap py-1 mb-2">
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
                                 <label for="item_size" class="form-label input-label">Size</label>
                                 <select id="item_size" class="form-select form-control select-field">
@@ -260,14 +273,15 @@ $("#btnAddSizeQty").click(function (){
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
                                 <label for="item_quantity" class="form-label input-label">Quantity</label>
-                                <input type="number" class="form-control input-field" id="item_quantity">
+                                <input type="number" class="form-control input-field" id="item_quantity" min="0" oninput="validity.valid||(value='');">
                             </div>
                             <button type="button" class="btn-remove btn">
                                 <i class="fa-regular fa-circle-xmark"></i></button>
                     </div>`
 
-    $("#sizeQtyRow").append(element);
-    btnCancelClick();
+        $("#sizeQtyRow").append(element);
+        btnCancelClick();
+    }
 })
 
 $("#btnGetAll").click(function (){
@@ -404,7 +418,7 @@ function onTableRowClicked() {
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
                                 <label for="item_quantity" class="form-label input-label">Quantity</label>
-                                <input value="${qty}" type="number" class="form-control input-field" id="item_quantity">
+                                <input value="${qty}" type="number" class="form-control input-field" id="item_quantity" min="0" oninput="validity.valid||(value='');">
                             </div>
                     </div>`
             $("#sizeQtyRow").append(element);
@@ -506,4 +520,95 @@ function clearFields() {
                     </div>`
 
     $("#sizeQtyRow").append(element);
+}
+
+function validateFields(){
+    let requiredFieldsAreFilled = checkRequiredFields();
+
+    if(!requiredFieldsAreFilled){
+        return false;
+    }
+
+    let item_name = $("#item_name").val()
+    let supp_code = $("#item_supp_code").val();
+    let price_sale = $("#item_price_sale").val();
+    let price_buy = $("#item_price_buy").val();
+
+    let validated = true;
+    if (!validate(item_name, /[A-Za-z0-9\s]+/)) {
+        $("#el_item_name").css("display", "block");
+        clearErrorLabel("#item_name");
+        validated = false;
+    }
+    if (!validate(supp_code, /^SUPP-\d+$/)) {
+        $("#el_supp_code").css("display", "block");
+        clearErrorLabel("#item_supp_code");
+        validated = false;
+    }
+    if (!validate(price_sale, /^\d*\.?\d+$/)) {
+        $("#el_price_sale").css("display", "block");
+        clearErrorLabel("#item_price_sale");
+        validated = false;
+    }
+    if (!validate(price_buy, /^\d*\.?\d+$/)) {
+        $("#el_price_buy").css("display", "block");
+        clearErrorLabel("#item_price_buy");
+        validated = false;
+    }
+
+    return validated;
+}
+
+function checkRequiredFields() {
+    if(
+        $("#item_code").val() == "" || $("#item_name").val() == "" || $("#item_pic_hidden").val() == "" ||
+        $("#item_category").val() == null || $("#item_supp_code").val() == null || $("#item_supp_name").val() == "" ||
+        $("#item_price_sale").val() == "" || $("#item_price_buy").val() == "" || $(".size-qty-container").length == 0 ||
+        $(".size-qty-container").length > 0 && ($(".size-qty-container").find("#item_size").val() == null ||
+        $(".size-qty-container").find("#item_quantity").val()=="" || $(".size-qty-container").find("#item_quantity").val() < 0)
+    ){
+        if ($("#item_code").val() == "") alert("Item Code is empty");
+        else if ($("#item_name").val() == "") alert("Item Name is empty");
+        else if ($("#item_pic_hidden").val() == "") alert("Item Pic is not selected");
+        else if ($("#item_category").val() == null) alert("Item Category is not selected");
+        else if ($("#item_supp_code").val() == null) alert("Supp Code is not selected");
+        else if ($("#item_supp_name").val() == "") alert("Supp Name is empty");
+        else if ($("#item_price_sale").val() == "") alert("Unit Price- Sale is empty");
+        else if ($("#item_price_buy").val() == "") alert("Unit Price- Buy is empty");
+        else if ($(".size-qty-container").length == 0) alert("Please select a size first");
+        else {
+            $(".size-qty-container").each(function(index) {
+                var $container = $(this);
+                var item_size = $container.find("#item_size").val();
+                var item_quantity = $container.find("#item_quantity").val();
+                console.log(item_quantity);
+                if (item_size == null){
+                    alert("Item Size is not selected");
+                    return false;
+                }
+                if (item_quantity == "" || item_quantity < 0){
+                    alert("Item Quantity is empty or negative");
+                    return false;
+                }
+            });
+        }
+
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function validate(value, regex){
+    if(regex.test(value)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function clearErrorLabel(elementId) {
+    $(elementId).on("keyup", function(){
+        $(elementId + "+ label").css("display", "none");
+    })
 }

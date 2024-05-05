@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.backend.controller;
 
 import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 import lk.ijse.gdse66.backend.dto.*;
@@ -56,13 +57,13 @@ public class InventoryController {
 
     @PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody InventoryDTO inventoryDTO){
+    public void save(@Valid @RequestBody InventoryDTO inventoryDTO){
         inventoryService.saveItem(inventoryDTO);
     }
 
     @PatchMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody InventoryDTO inventoryDTO){
+    public void update(@Valid @RequestBody InventoryDTO inventoryDTO){
         System.out.println(inventoryDTO);
         inventoryService.updateItem(inventoryDTO);
     }

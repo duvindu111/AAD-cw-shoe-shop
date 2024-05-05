@@ -94,7 +94,7 @@
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="item_name" class="form-label input-label">Item Name</label>
                         <input type="text" class="form-control input-field" id="item_name">
-                        <label id="el_cust_name" class="error-label text-danger"><small>Item name can only contain
+                        <label id="el_item_name" class="error-label text-danger"><small>Item name can only contain
                             letters and white spaces</small></label>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
@@ -119,6 +119,8 @@
                         <select id="item_supp_code" class="form-select form-control select-field">
                             <option disabled selected>Select Supplier Code</option>
                         </select>
+                        <label id="el_supp_code" class="error-label text-danger"><small>Invalid Format. Supplier Code
+                            has to be in the format of "SUP-000".</small></label>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="item_supp_name" class="form-label input-label">Supplier Name</label>
@@ -126,11 +128,13 @@
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="item_price_sale" class="form-label input-label">Unit Price - Sale</label>
-                        <input type="text" class="form-control input-field" id="item_price_sale">
+                        <input type="number" class="form-control input-field" id="item_price_sale" min="0" oninput="validity.valid||(value='');">
+                        <label id="el_price_sale" class="error-label text-danger"><small>Invalid price format</small></label>
                     </div>
                     <div class="col-sm-6 col-xl-4 mb-4">
                         <label for="item_price_buy" class="form-label input-label">Unit Price - Buy</label>
-                        <input type="text" class="form-control input-field" id="item_price_buy">
+                        <input type="number" class="form-control input-field" id="item_price_buy" min="0" oninput="validity.valid||(value='');">
+                        <label id="el_price_buy" class="error-label text-danger"><small>Invalid price format</small></label>
                     </div>
                 </div>
                 <div id="sizeQtyRow" class="row">
@@ -153,7 +157,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
                                 <label for="item_quantity" class="form-label input-label">Quantity</label>
-                                <input type="number" class="form-control input-field" id="item_quantity">
+                                <input type="number" class="form-control input-field" id="item_quantity" min="0">
                             </div>
                             <button type="button" class="btn-remove btn">
                                 <i class="fa-regular fa-circle-xmark"></i></button>
