@@ -1,9 +1,6 @@
 package lk.ijse.gdse66.backend.services;
 
 import lk.ijse.gdse66.backend.dto.InventoryDTO;
-import lk.ijse.gdse66.backend.dto.InventoryPlusQtyDTO;
-import lk.ijse.gdse66.backend.entity.Customer;
-import lk.ijse.gdse66.backend.entity.Inventory;
 
 import java.util.List;
 

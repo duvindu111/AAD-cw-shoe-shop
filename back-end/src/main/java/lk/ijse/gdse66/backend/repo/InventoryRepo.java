@@ -18,4 +18,9 @@ public interface InventoryRepo extends JpaRepository<Inventory,String> {
     List<Inventory> findByPriceSaleBetween(double min_price, double max_price);
 
     List<Inventory> findByCategoryContaining(String value);
+
+    @Query(value = "SELECT item_code FROM inventory", nativeQuery = true)
+    List<String> getItemCodes();
+
+    Inventory findAllByItemCode(String code);
 }

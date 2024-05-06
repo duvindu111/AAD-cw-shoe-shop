@@ -95,17 +95,19 @@
                 <div id="item_row" class="row px-3 mt-3 d-flex">
                     <div class="col-sm-4 col-xl-3 px-0">
                         <label for="item_code" class="form-label input-label">Item Code</label>
-                        <input type="text" class="form-control input-field" id="item_code">
+                        <select id="item_code" class="form-select form-control select-field">
+                            <option disabled selected>Select Item Code</option>
+                        </select>
                     </div>
-                    <img src="../assets/images/pair-trainers.jpg" style="height: 70px; border-radius: 5px;">
-                    <div class="d-flex">
-                        <label class="form-label input-label mb-0 align-self-end">Black Sneaker JK</label>
+                    <img id="product_img" class="item-related-block" src="../assets/images/pair-trainers.jpg" style="height: 70px; border-radius: 5px;">
+                    <div class="item-related-flex">
+                        <label id="item_name" class="form-label input-label mb-0 align-self-end">Black Sneaker JK</label>
                     </div>
-                    <div class="d-flex">
-                        <label class="form-label input-label mb-0 align-self-end">3200/=</label>
+                    <div class="item-related-flex">
+                        <label id="unit_price" class="form-label input-label mb-0 align-self-end">3200/=</label>
                     </div>
                 </div>
-                <div id="size_row" class="row px-3 mt-3 d-flex">
+                <div id="size_row" class="row px-3 mt-3 item-related-flex">
                     <div class="col-sm-4 col-xl-3 px-0">
                         <label for="item_size" class="form-label input-label">Size</label>
                         <select id="item_size" class="form-select form-control select-field">
@@ -118,36 +120,38 @@
                     </div>
                     <div class="d-flex">
                         <label class="form-label input-label mb-0 align-self-end">Available Qty:&nbsp;</label>
-                        <label id="available_qty" class="form-label input-label mb-0 align-self-end">25</label>
+                        <label id="available_qty" class="form-label input-label mb-0 align-self-end">Select a Size</label>
                     </div>
                 </div>
                 <div id="customer_row" class="row px-3 mt-5 d-flex">
                     <div class="col-sm-4 col-xl-3 px-0">
                         <label for="cust_code" class="form-label input-label">Customer Code</label>
-                        <input disabled type="text" class="form-control input-field" id="cust_code">
+                        <select id="cust_code" class="form-select form-control select-field">
+                            <option disabled selected>Select Customer Code</option>
+                        </select>
                     </div>
-                    <div class="d-flex">
-                        <label class="form-label input-label mb-0 align-self-end">Kasun Gamage</label>
+                    <div class="cust-related-flex">
+                        <label id="cust_name" class="form-label input-label mb-0 align-self-end">Kasun Gamage</label>
                     </div>
-                    <div class="d-flex">
-                        <label class="form-label input-label mb-0 align-self-end">kasungamage1985@gmail.com</label>
+                    <div class="cust-related-flex">
+                        <label id="cust_email" class="form-label input-label mb-0 align-self-end">kasungamage1985@gmail.com</label>
                     </div>
-                    <div class="d-flex">
-                        <label class="form-label input-label mb-0 align-self-end">0711457902</label>
+                    <div class="cust-related-flex">
+                        <label id="cust_contact" class="form-label input-label mb-0 align-self-end">0711457902</label>
                     </div>
                 </div>
-                <div id="customer_loyalty_row" class="row px-3 mt-3 d-flex">
+                <div id="customer_loyalty_row" class="row px-3 mt-3 cust-related-flex">
                     <div class="">
                         <label class="form-label input-label">Loyalty Level:&nbsp;</label>
                         <label id="cust_level" class="form-label input-label">New</label>
                     </div>
                     <div class="">
                         <label class="form-label input-label">Loyalty Points:&nbsp;</label>
-                        <label class="form-label input-label mb-0">1</label>
+                        <label id="cust_points" class="form-label input-label mb-0">1</label>
                     </div>
                 </div>
-                <div id="button-row">
-                    <button id="btn_add_cart" class="btn brown-btn mt-3">Add To Cart</button>
+                <div id="button-row" class="mt-4">
+                    <button id="btn_add_cart" class="btn brown-btn">Add To Cart</button>
                 </div>
 
                 <table id="tableCart" class="table table-responsive table-border-radius-5 mb-4 mt-4 brown-scrollbar">
@@ -219,6 +223,6 @@
 <!--end of common js --------------------- -->
 
 <!--uniqe js-->
-<script src="../assets/js/products.js"></script>
+<script src="../assets/js/place-order.js"></script>
 </body>
 </html>

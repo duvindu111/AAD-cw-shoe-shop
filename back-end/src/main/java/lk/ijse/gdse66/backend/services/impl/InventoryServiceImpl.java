@@ -1,10 +1,7 @@
 package lk.ijse.gdse66.backend.services.impl;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
-import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.InventoryDTO;
-import lk.ijse.gdse66.backend.dto.InventoryPlusQtyDTO;
 import lk.ijse.gdse66.backend.dto.ShoeSizeDTO;
 import lk.ijse.gdse66.backend.entity.Inventory;
 import lk.ijse.gdse66.backend.entity.ShoeSize;
@@ -15,7 +12,6 @@ import lk.ijse.gdse66.backend.repo.SupplierRepo;
 import lk.ijse.gdse66.backend.services.InventoryService;
 import lk.ijse.gdse66.backend.services.exceptions.DuplicateRecordException;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
