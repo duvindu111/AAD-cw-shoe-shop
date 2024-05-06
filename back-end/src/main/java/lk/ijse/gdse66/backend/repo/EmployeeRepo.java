@@ -15,4 +15,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, String> {
     List<Employee> findAllByNameStartingWith(String codePrefix);
 
     Boolean existsByEmail(String email);
+
+    Employee findByCode(String code);
 }

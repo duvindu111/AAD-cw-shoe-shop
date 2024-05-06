@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.backend.repo;
 
 import lk.ijse.gdse66.backend.entity.Customer;
+import lk.ijse.gdse66.backend.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,4 +19,6 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
     List<String> getCustomerCodes();
 
     Customer findAllByCode(String code);
+
+    Customer findByCode(String code);
 }

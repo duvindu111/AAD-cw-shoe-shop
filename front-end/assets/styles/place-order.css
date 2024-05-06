@@ -34,3 +34,19 @@
 .cust-related-flex{
     display: none;
 }
+
+.round-td{
+    border-radius: 0px 5px 5px 0px;
+}
+
+.round-th{
+    border-radius: 0px 5px 0px 0px;
+}
+
+.cart-remove-btn{
+    cursor: pointer;
+}
+
+#btn_confirm{
+    background-color: #57370D;
+}

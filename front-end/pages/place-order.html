@@ -72,9 +72,12 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto d-flex">
                     <l1 class="d-flex">
-                        <h6 id="name_of_user" class="align-self-center text-palegoldenrod">User One</h6>
+                        <h6 id="code_of_employee" class="align-self-center text-palegoldenrod">EMP-001</h6>
+                    </l1>
+                    <l1 class="d-flex">
+                        <h6 id="name_of_user" class="align-self-center text-palegoldenrod">Kasun Chamara</h6>
                     </l1>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -90,7 +93,7 @@
             <div class="container-fluid">
 
                 <div id="oid_row" class="row px-3">
-                    <h1 class="text-palegoldenrod">OID-001</h1>
+                    <h1 id="order_id" class="text-palegoldenrod">Order id</h1>
                 </div>
                 <div id="item_row" class="row px-3 mt-3 d-flex">
                     <div class="col-sm-4 col-xl-3 px-0">
@@ -104,7 +107,8 @@
                         <label id="item_name" class="form-label input-label mb-0 align-self-end">Black Sneaker JK</label>
                     </div>
                     <div class="item-related-flex">
-                        <label id="unit_price" class="form-label input-label mb-0 align-self-end">3200/=</label>
+                        <label id="unit_price" class="form-label input-label mb-0 align-self-end">unit price</label>
+                        <label class="form-label input-label mb-0 align-self-end">/=</label>
                     </div>
                 </div>
                 <div id="size_row" class="row px-3 mt-3 item-related-flex">
@@ -131,13 +135,13 @@
                         </select>
                     </div>
                     <div class="cust-related-flex">
-                        <label id="cust_name" class="form-label input-label mb-0 align-self-end">Kasun Gamage</label>
+                        <label id="cust_name" class="form-label input-label mb-0 align-self-end"></label>
                     </div>
                     <div class="cust-related-flex">
-                        <label id="cust_email" class="form-label input-label mb-0 align-self-end">kasungamage1985@gmail.com</label>
+                        <label id="cust_email" class="form-label input-label mb-0 align-self-end"></label>
                     </div>
                     <div class="cust-related-flex">
-                        <label id="cust_contact" class="form-label input-label mb-0 align-self-end">0711457902</label>
+                        <label id="cust_contact" class="form-label input-label mb-0 align-self-end"></label>
                     </div>
                 </div>
                 <div id="customer_loyalty_row" class="row px-3 mt-3 cust-related-flex">
@@ -161,28 +165,39 @@
                         <th scope="col">Item Name</th>
                         <th scope="col">Size</th>
                         <th scope="col">Unit Price</th>
-                        <th scope="col">Qty</th>
+                        <th scope="col" class="round-th">Qty</th>
                     </tr>
                     </thead>
                     <tbody id="tableCartBody" class="brownTableBody">
                     </tbody>
                 </table>
 
-                <div id="after-cart-row" class="mb-5 d-flex">
+                <div id="price_row" class="row px-3 mt-3">
+                    <div class="">
+                        <label class="form-label input-label">Total:&nbsp;</label>
+                        <label class="form-label input-label"><span id="total_price">0</span>/=</label>
+                    </div>
+                </div>
+                <div id="after-cart-row" class="mb-4 d-flex mt-3">
                     <div class="col-sm-4 col-xl-3 px-0">
                         <label for="item_code" class="form-label input-label">Added Points:&nbsp;</label>
-                        <input type="number" class="form-control input-field" id="added_points" min="0" oninput="validity.valid||(value='');">
+                        <input disabled type="number" class="form-control input-field" id="added_points" value="0" min="0" oninput="validity.valid||(value='');">
                     </div>
                     <div class="col-sm-4 col-xl-3 px-0">
                         <label for="item_code" class="form-label input-label">Payment Method:&nbsp;</label>
                         <select id="payment_method" class="form-select form-control select-field">
                             <option disabled selected>Select Payment Method</option>
-                            <option>Card</option>
-                            <option>Cash</option>
+                            <option value="CARD">Card</option>
+                            <option value="CASH">Cash</option>
                         </select>
                     </div>
                 </div>
-
+                <div id="confirm_purchase_row" class="mb-5">
+                    <button id="btn_confirm" class="btn text-palegoldenrod">Confirm Purchase</button>
+                </div>
+                <div id="" class="mb-5">
+                    <button class="btn_place_order btn text-palegoldenrod">Place Order</button>
+                </div>
             </div>
             <!-- End of Content -->
         </div>

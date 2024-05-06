@@ -1,9 +1,6 @@
 package lk.ijse.gdse66.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lk.ijse.gdse66.backend.util.GenderEnum;
 import lk.ijse.gdse66.backend.util.LoyaltyLevelEnum;
 import lombok.AllArgsConstructor;
@@ -12,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -37,4 +36,7 @@ public class Customer {
     private String contact;
     private String email;
     private Timestamp recentPurchaseDate;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer")
+    private List<Order> orders = new ArrayList<>();
 }

@@ -29,8 +29,8 @@ public interface ShoeSizeRepo extends JpaRepository<ShoeSize,String> {
     @Query(value="DELETE FROM shoe_size WHERE item_code= ?1", nativeQuery = true)
     void deleteByItemCode(String item_code);
 
-    @Query(value="SELECT size FROM shoe_size WHERE item_code=?1 && NOT status =?2 ",nativeQuery = true)
-    List<Integer> findSizesByItemCodeAndStatus(String item_code, String staus);
+    @Query(value="SELECT size FROM shoe_size WHERE item_code=?1 && (NOT status =?2) ",nativeQuery = true)
+    List<Integer> findSizesByItemCodeAndStatus(String item_code, String status);
 
     @Query(value="SELECT quantity FROM shoe_size WHERE item_code=?1 && size=?2",nativeQuery = true)
     Integer findQtyByItemCodeAndSize(String item_code, int size);

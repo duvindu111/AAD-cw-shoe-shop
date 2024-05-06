@@ -1,8 +1,10 @@
 package lk.ijse.gdse66.backend.controller;
 
+import jakarta.validation.Valid;
 import jakarta.validation.Validator;
 import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.InventoryDTO;
+import lk.ijse.gdse66.backend.dto.OrderDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
 import lk.ijse.gdse66.backend.services.InventoryService;
 import lk.ijse.gdse66.backend.services.PlaceOrderService;
@@ -23,6 +25,12 @@ public class PlaceOrderController {
     public PlaceOrderController(PlaceOrderService placeOrderService, ResponseDTO responseDTO) {
         this.placeOrderService = placeOrderService;
         this.responseDTO = responseDTO;
+    }
+
+    @GetMapping("/getlastid")
+    public String getLastId(){
+        System.out.println("controller@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        return placeOrderService.getLastId();
     }
 
     @GetMapping("/getItemCodes")
@@ -83,7 +91,7 @@ public class PlaceOrderController {
     public int getQtyByItemCodeAndSize(@PathVariable String item_code, @PathVariable int size){
         System.out.println(item_code + " " + size);
 
-        Integer qty = placeOrderService.getQtyByItemCodeAndSize(item_code, size);
+        int qty = placeOrderService.getQtyByItemCodeAndSize(item_code, size);
         return qty;
     }
 
@@ -120,6 +128,13 @@ public class PlaceOrderController {
             responseDTO.setData(exc);
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/placeOrder")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void placeOrder(@Valid @RequestBody OrderDTO orderDTO){
+        System.out.println(orderDTO);
+        placeOrderService.placeOrder(orderDTO);
     }
 
 }

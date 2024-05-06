@@ -71,6 +71,10 @@
     }
 }
 
+.navbar-nav{
+    column-gap: 10px;
+}
+
 #content{
     position: fixed;
     max-height: 100vh;
