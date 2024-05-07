@@ -1,12 +1,10 @@
 package lk.ijse.gdse66.backend.controller;
 
 import jakarta.validation.Valid;
-import jakarta.validation.Validator;
 import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.backend.dto.OrderDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
-import lk.ijse.gdse66.backend.services.InventoryService;
 import lk.ijse.gdse66.backend.services.PlaceOrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +27,6 @@ public class PlaceOrderController {
 
     @GetMapping("/getlastid")
     public String getLastId(){
-        System.out.println("controller@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         return placeOrderService.getLastId();
     }
 

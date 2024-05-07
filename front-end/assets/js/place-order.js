@@ -177,11 +177,11 @@ $("#btn_confirm").click(function(){
 });
 
 $(".btn_place_order").click(function (){
-    if(paymentCardValidation()){
+    if($("#payment_method").val() == "CASH" || $("#payment_method").val() == "CARD" && paymentCardValidation){
         let order_id = $("#order_id").text();
         let order_date = new Date();
         let cust_code = $("#cust_code").val();
-        let cust_name = $("#cust_name").val();
+        let cust_name = $("#cust_name").text();
         let total = $("#total_price").text();
         let added_points = $("#added_points").val();
         let payment_method = $("#payment_method").val();
@@ -276,7 +276,7 @@ function resetPlaceOrderPage(){
 }
 
 function paymentCardValidation(){
-let card_no = $("#pm_card_no").val();
+    let card_no = $("#pm_card_no").val();
     let card_num = $("#card_num").val();
     let bank_name = $("#bank_name").val();
     let exp_date = $("#exp_date").val();
