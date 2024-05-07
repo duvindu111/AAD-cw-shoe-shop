@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Refund</title>
+    <title>Order Details</title>
 
 <!--    google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
     <link href="../../assets/styles/common.css" rel="stylesheet">
 
 <!--    unique styles-->
-    <link href="../../assets/styles/admin-customer.css" rel="stylesheet">
+    <link href="../../assets/styles/admin-order-details.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -97,21 +97,24 @@
                 </div>
 
 <!--                table-->
-                <table id="tableOrderDetail" class="table table-responsive table-border-radius-5 mb-5 mt-4 brown-scrollbar">
-                    <thead class="brownTableHead">
-                    <tr>
-                        <th scope="col">Order Id</th>
-                        <th scope="col">Order Date</th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Payment Method</th>
-                        <th scope="col">Added Points</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Cashier Name</th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableOrderDetailBody" class="brownTableBody">
-                    </tbody>
-                </table>
+                <div class="w-100 px-3">
+                    <table id="tableOrder" class="table table-responsive table-border-radius-5 mb-5 mt-4 brown-scrollbar">
+                        <thead class="brownTableHead">
+                        <tr>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Order Date</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Added Points</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Cashier Name</th>
+                            <th scope="col">V-R</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableOrderBody" class="brownTableBody">
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- End of Content -->
         </div>
@@ -121,6 +124,35 @@
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
+
+<!-- Order Detail Modal-->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="text-dark-brown">Order Details</h6>
+                <button class="close text-dark-brown" type="button" data-dismiss="modal" aria-label="Close" onclick="$('#detailModal').modal('hide')">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="tableOrderDetail" class="table-responsive">
+                    <thead class="brownTableHead p-3">
+                    <tr>
+                        <th>Item Code</th>
+                        <th>Item Name</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableOrderDetailBody" class="brownTableBody p-3">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -1,0 +1,25 @@
+#tableOrder {
+    max-width: 100%;
+}
+
+.order-details-button-td i{
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.order-details-button-td i:hover{
+    transform: scale(1.2);
+    color: #ffe400;
+}
+
+.order-details-button-td{
+    border-radius: 0px 5px 5px 0px;
+}
+
+#tableOrderDetail th, #tableOrderDetail td{
+    padding: 10px;
+}
+
+.text-dark-brown{
+    color: #7c7645 !important;
+}

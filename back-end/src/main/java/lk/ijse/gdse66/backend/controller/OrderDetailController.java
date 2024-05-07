@@ -1,14 +1,12 @@
 package lk.ijse.gdse66.backend.controller;
 
 import lk.ijse.gdse66.backend.dto.OrderDTO;
+import lk.ijse.gdse66.backend.dto.OrderDetailDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
 import lk.ijse.gdse66.backend.services.OrderDetailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +31,23 @@ public class OrderDetailController {
             responseDTO.setCode(HttpStatus.OK);
             responseDTO.setMessage("Success");
             responseDTO.setData(orderList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/getOrderDetailsById/{id}")
+    public ResponseEntity<ResponseDTO> getAllOrders(@PathVariable String id){
+        try{
+            List<OrderDetailDTO> orderDetailList = orderDetailService.getOrderDetailsById(id);
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(orderDetailList);
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         }catch (Exception exc){
             responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
