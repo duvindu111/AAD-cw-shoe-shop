@@ -50,3 +50,131 @@
 #btn_confirm{
     background-color: #57370D;
 }
+
+.btn_place_order{
+    background-color: #907f42;
+    color: palegoldenrod;
+}
+
+.btn_next{
+    background-color: #907f42;
+    color: palegoldenrod;
+}
+
+.admin-details{
+    display: flex;
+}
+
+.cash-details{
+    display: none;
+}
+
+/* payment method popup css*/
+#exp_date[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+#exp_date[type="date"] {
+    padding-right: 20px; /* Adjust as needed */
+    background: url('../../assets/images/calendar.png') no-repeat center right;
+    background-size: 16px 16px;
+}
+
+.card.box2 {
+    padding-bottom: 50px;
+    height: auto;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0
+}
+
+.text {
+    font-size: 13px
+}
+
+#pm_card_modal .nav.nav-tabs {
+    border: none;
+    border-bottom: 2px solid #ddd
+}
+
+#pm_card_modal .nav.nav-tabs .nav-item .nav-link {
+    color: black;
+    border-bottom: 2px solid #907f42;
+    font-size: 14px
+}
+
+#pm_card_modal .form-control {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    box-shadow: none;
+    height: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 0px;
+    letter-spacing: 1.5px;
+    border-radius: 0
+}
+
+#pm_card_modal .inputWithIcon {
+    position: relative
+}
+
+#pm_card_modal img {
+    width: 50px;
+    height: 20px;
+    object-fit: cover
+}
+
+#pm_card_modal .inputWithIcon span {
+    position: absolute;
+    right: 0px;
+    bottom: 9px;
+    color: #907f42;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px
+}
+
+#pm_card_modal .form-control:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #ddd
+}
+
+#pm_card_modal .btn-outline-primary {
+    color: black;
+    background-color: #ddd;
+    border: 1px solid #ddd
+}
+
+#pm_card_modal .btn-group>.btn-group:not(:last-child)>.btn,
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle),
+.btn-group>.btn-group:not(:first-child)>.btn,
+.btn-group>.btn:nth-child(n+3),
+.btn-group>:not(.btn-check)+.btn {
+    border-radius: 50px;
+    margin-right: 20px
+}
+
+#pm_card_modal form {
+    font-size: 14px
+}
+
+@media (max-width:750px) {
+    #pm_card_modal .container {
+        padding: 10px;
+        width: 100%
+    }
+
+    #pm_card_modal .text-green {
+        font-size: 14px
+    }
+
+    #pm_card_modal .card.box1,
+    #pm_card_modal .card.box2 {
+        width: 100%
+    }
+
+    #pm_card_modal .nav.nav-tabs .nav-item .nav-link {
+        font-size: 12px
+    }
+}

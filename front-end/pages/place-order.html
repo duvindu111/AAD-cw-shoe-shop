@@ -208,6 +208,118 @@
 </div>
 <!-- End of Page Wrapper -->
 
+<!-- payment card model -->
+<div class="modal fade" id="pm_card_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-transparent">
+            <div class="modal-body bg-transparent">
+                <div class="container bg-light d-md-flex align-items-center px-0 py-0">
+                    <div class="card box2 shadow-sm">
+                        <div class="d-flex align-items-center justify-content-between pb-md-4 px-md-5 p-4 pt-5 "><span class="h5 fw-bold m-0">Payment methods</span>
+                        </div>
+                        <ul class="nav nav-tabs mb-3 px-md-4 px-2">
+                            <li class="nav-item"><a aria-current="page" class="nav-link px-2 active" href="#">Credit Card</a></li>
+                        </ul>
+                        <div class="row mx-0 w-100 d-flex justify-content-center">
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Credit Card</span>
+                                    <div class="inputWithIcon"><input id="card_num" class="form-control" type="text"> <span class=""> <img
+                                            src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png"></span></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Bank Name</span>
+                                    <div class="inputWithIcon"><input id="bank_name" class="form-control" type="text" value=""></div>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-column ps-md-5 px-md-0 px-4 mb-4"><span>Expiration</span>
+                                        <div class="inputWithIcon"><input id="exp_date" class="form-control" type="date" value=""></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4"><span>Code CVV</span>
+                                        <div class="inputWithIcon"><input id="cvv" class="form-control" type="password" value=""> <span
+                                                class="fas fa-lock"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Name</span>
+                                    <div class="inputWithIcon"><input id="name_on_card" class="form-control text-uppercase" type="text"
+                                                                      value="">
+                                        <span class="far fa-user"></span></div>
+                                </div>
+                            </div>
+                            <div class="col-12 px-md-5 px-4 mt-3">
+                                <div class="btn btn_place_order w-100">Place Order<span id="place_price"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--payment cash model-->
+<div class="modal fade" id="pm_cash_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-transparent">
+            <div class="modal-body bg-transparent">
+                <div class="container bg-light d-md-flex align-items-center px-0 py-0">
+                    <div class="card box2 shadow-sm">
+                        <div class="d-flex align-items-center justify-content-between pb-md-4 px-md-5 p-4 pt-5 "><span id="cash_header" class="h5 fw-bold m-0">Verify Admin Credentials</span>
+                        </div>
+                        <ul class="nav nav-tabs mb-3 px-md-4 px-2">
+                            <li class="nav-item"><a aria-current="page" class="nav-link px-2 active" href="#">Cash Payment</a></li>
+                        </ul>
+                        <!--admin details-->
+                        <div class="row mx-0 w-100 justify-content-center admin-details">
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Username</span>
+                                    <div class="inputWithIcon"><input id="admin_username" class="form-control" type="text"></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Password</span>
+                                    <div class="inputWithIcon"><input id="admin_password" class="form-control" type="password" value=""></div>
+                                </div>
+                            </div>
+                            <div class="col-12 px-md-5 px-4 mt-3">
+                                <div class="btn btn_next w-100">Next</div>
+                            </div>
+                        </div>
+
+                        <!--cash payment-->
+                        <div class="row mx-0 w-100 justify-content-center cash-details">
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Total</span>
+                                    <div class="inputWithIcon"><input disabled id="cash_total" class="form-control" type="text"></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Paid Amount</span>
+                                    <div class="inputWithIcon"><input id="paid_amount" class="form-control" type="number" min="0" oninput="validity.valid||(value='');"></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Balance</span>
+                                    <div class="inputWithIcon"><input disabled id="balance" class="form-control" type="text"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 px-md-5 px-4 mt-3">
+                                <button class="btn btn_place_order w-100" disabled>Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
