@@ -214,6 +214,11 @@ $(".btn_place_order").click(function (){
                 alert("Order placed successfully.")
                 resetPlaceOrderPage();
                 $("#pm_card_modal").modal('hide');
+                $("#pm_cash_modal").modal('hide');
+                $(".cash-details").css("display", "none");
+                $(".cash-details input").val("");
+                $(".admin-details").css("display", "flex");
+                $(".admin-details input").val("");
                 console.log(response);
             },
             error: function (jqXHR, textStatus, errorThrown) {

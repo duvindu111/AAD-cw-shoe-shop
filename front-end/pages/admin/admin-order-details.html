@@ -130,7 +130,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="text-dark-brown">Order Details</h6>
+                <h6 class="text-dark-brown">Order Details:&nbsp;<span id="popupOrderId"></span></h6>
                 <button class="close text-dark-brown" type="button" data-dismiss="modal" aria-label="Close" onclick="$('#detailModal').modal('hide')">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -144,6 +144,7 @@
                         <th>Size</th>
                         <th>Quantity</th>
                         <th>Unit Price</th>
+                        <th>Refund Item</th>
                     </tr>
                     </thead>
                     <tbody id="tableOrderDetailBody" class="brownTableBody p-3">

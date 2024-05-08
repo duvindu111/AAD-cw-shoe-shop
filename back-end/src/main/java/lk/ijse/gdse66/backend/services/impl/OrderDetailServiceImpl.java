@@ -98,7 +98,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
             shoeSizeRepo.updateByItemCodeAndSize(newQty, status, dto.getItemCode(), dto.getSize());
         }
 
-        if(orderDTO.getCustomer() == null || orderDTO.getCustomer() == "") {
+        System.out.println(orderDTO.getCustomer());
+        if(orderDTO.getCustomer() == null || orderDTO.getCustomer() == "" || orderDTO.getCustomer().equals("null")){
+            System.out.println("Customer is null");
         }else {
             double total_price = orderDTO.getTotalPrice();
             int points_tobe_added = orderDTO.getAddedPoints();

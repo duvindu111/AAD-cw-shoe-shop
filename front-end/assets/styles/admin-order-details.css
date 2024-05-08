@@ -12,10 +12,6 @@
     color: #ffe400;
 }
 
-.order-details-button-td{
-    border-radius: 0px 5px 5px 0px;
-}
-
 #tableOrderDetail th, #tableOrderDetail td{
     padding: 10px;
 }
