@@ -78,8 +78,15 @@ public class OrderDetailController {
 
     @PostMapping("/refund")
     @ResponseStatus(HttpStatus.CREATED)
-    public void placeOrder(@Valid @RequestBody OrderDTO orderDTO){
+    public void refundCompleteOrder(@Valid @RequestBody OrderDTO orderDTO){
         System.out.println(orderDTO);
         orderDetailService.refund(orderDTO);
+    }
+
+    @PostMapping("/refundOne")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void refundOneItem(@Valid @RequestBody OrderDTO orderDTO){
+        System.out.println(orderDTO);
+        orderDetailService.refundOneItem(orderDTO);
     }
 }

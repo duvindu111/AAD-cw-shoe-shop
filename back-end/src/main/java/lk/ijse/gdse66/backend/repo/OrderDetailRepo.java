@@ -11,4 +11,7 @@ public interface OrderDetailRepo extends JpaRepository<OrderDetail, String>{
     List<OrderDetail> findAllByOrderDetailPK_OrderId(String orderId);
 
     void deleteByOrderDetailPK_OrderId(String orderId);
+
+    void deleteByOrderDetailPK_OrderIdAndOrderDetailPK_ItemCodeAndOrderDetailPK_Size
+            (String orderId, String itemCode, int size);
 }

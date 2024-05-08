@@ -12,4 +12,6 @@ public interface OrderRepo extends JpaRepository<Order, String> {
 
     List<Order> findAllByOrderIdStartingWith(String prefix);
 
+    Order findByOrderId(String orderId);
+
 }

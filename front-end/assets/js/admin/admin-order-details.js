@@ -126,7 +126,7 @@ function viewOrderDetails(elm){
                     <td>${order.qty}</td>
                     <td>${order.unitPrice}</td>
                     <td class="order-details-button-td text-center">                  
-                        <i class="fa-solid fa-arrow-rotate-left" title="refund only this item" onclick="refundOneItem($('.chosen'))"></i>
+                        <i class="fa-solid fa-arrow-rotate-left" title="refund only this item" onclick="refundOneItem($(this),$('.chosen'))"></i>
                     </td>
                     </tr>`
                 $("#tableOrderDetailBody").append(row);
@@ -141,10 +141,49 @@ function viewOrderDetails(elm){
     })
 }
 
-function refundOneItem(elm){
+function refundOneItem(current_elm, elm){
     console.log(elm);
     if($("#tableOrderDetailBody tr").length == 1){
         refundCompleteOrder(elm);
+    }else{
+        let orderId = elm.closest('tr').find('td:first').text();
+        let addedPoints = elm.closest('tr').find('td:eq(4)').text();
+        let totalPrice = elm.closest('tr').find('td:eq(2)').text();
+        let customer_code = elm.closest('tr').find('td:eq(7)').text();
+        let cashier_name = elm.closest('tr').find('td:eq(6)').text();
+        let paymentMethod = elm.closest('tr').find('td:eq(3)').text();
+        let employee_code = elm.closest('tr').find('td:eq(8)').text();
+
+        let itemList = [];
+        let item = {
+            itemCode: current_elm.closest('tr').find('td:first').text(),
+            size: current_elm.closest('tr').find('td:eq(2)').text(),
+            qty: current_elm.closest('tr').find('td:eq(3)').text(),
+            unitPrice: current_elm.closest('tr').find('td:eq(4)').text()
+        }
+        itemList.push(item);
+
+        $.ajax({
+            url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/refundOne",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({"orderId": orderId, "totalPrice": totalPrice, "addedPoints": addedPoints,
+                "employee": employee_code, "customer": customer_code, "orderDetailList": itemList, "cashierName": cashier_name,
+                "paymentMethod": paymentMethod
+            }),
+            success: function (response) {
+                console.log(response);
+                alert("Item refunded successfully");
+
+                $("#detailModal").modal('hide');
+                getAllOrders();
+            },
+            error: function (jqxhr, textStatus, error) {
+                alert("refunding item failed.")
+                console.log(jqxhr);
+            }
+        })
+
     }
 }
 

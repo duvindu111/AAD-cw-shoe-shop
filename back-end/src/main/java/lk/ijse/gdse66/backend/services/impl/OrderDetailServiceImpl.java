@@ -7,6 +7,7 @@ import lk.ijse.gdse66.backend.dto.OrderDetailDTO;
 import lk.ijse.gdse66.backend.entity.Customer;
 import lk.ijse.gdse66.backend.entity.Order;
 import lk.ijse.gdse66.backend.entity.OrderDetail;
+import lk.ijse.gdse66.backend.entity.ShoeSize;
 import lk.ijse.gdse66.backend.repo.CustomerRepo;
 import lk.ijse.gdse66.backend.repo.OrderDetailRepo;
 import lk.ijse.gdse66.backend.repo.OrderRepo;
@@ -15,6 +16,8 @@ import lk.ijse.gdse66.backend.services.OrderDetailService;
 import lk.ijse.gdse66.backend.util.LoyaltyLevelEnum;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class OrderDetailServiceImpl implements OrderDetailService {
 
+    private static final Logger log = LoggerFactory.getLogger(OrderDetailServiceImpl.class);
     private final ShoeSizeRepo shoeSizeRepo;
     private final OrderDetailRepo orderDetailRepo;
     private final CustomerRepo customerRepo;
@@ -125,6 +129,69 @@ public class OrderDetailServiceImpl implements OrderDetailService {
             customer.setLoyaltyPoints(newPoints);
             customer.setLoyaltyLevel(loyalty_level);
             customerRepo.save(customer);
+        }
+    }
+
+    @Override
+    public void refundOneItem(OrderDTO orderDTO) {
+        List<OrderDetailDTO> itemList = orderDTO.getOrderDetailList();
+        for (OrderDetailDTO dto : itemList) {
+            int availableQty = shoeSizeRepo.findQtyByItemCodeAndSize(dto.getItemCode(), dto.getSize());
+            int newQty = availableQty + dto.getQty();
+
+            String status;
+            if (newQty <= 0) {
+                status = "Not Available";
+            } else if (newQty < 10) {
+                status = "Low";
+            } else {
+                status = "Available";
+            }
+            shoeSizeRepo.updateByItemCodeAndSize(newQty, status, dto.getItemCode(), dto.getSize());
+
+            orderDetailRepo.deleteByOrderDetailPK_OrderIdAndOrderDetailPK_ItemCodeAndOrderDetailPK_Size
+                    (orderDTO.getOrderId(), dto.getItemCode(), dto.getSize());
+
+            double totalPrice = orderDTO.getTotalPrice();
+            System.out.println("total"+ totalPrice);
+            int addedPoints = orderDTO.getAddedPoints();
+            System.out.println("points"+ addedPoints);
+            double totalPriceWithoutDiscount = (totalPrice/(100 - addedPoints))*100;
+            System.out.println("total without discount"+ totalPriceWithoutDiscount);
+            double itemPrice = dto.getUnitPrice() * dto.getQty();
+            System.out.println("item price"+ itemPrice);
+            double itemPriceWithDiscount = itemPrice - ( (itemPrice/100) * addedPoints);
+            System.out.println("item price with discount"+ itemPriceWithDiscount);
+            double totalWithoutItem = totalPriceWithoutDiscount - itemPrice;
+            System.out.println("total without item"+ totalWithoutItem);
+
+            Order order = orderRepo.findByOrderId(orderDTO.getOrderId());
+            order.setTotalPrice(totalPrice - itemPriceWithDiscount);
+            orderRepo.save(order);
+
+            if(orderDTO.getCustomer() == null || orderDTO.getCustomer() == "" || orderDTO.getCustomer().equals("null")){
+                System.out.println("Customer is null");
+            }else {
+                if(totalPrice >= 800 && totalWithoutItem < 800){
+                        Customer customer = customerRepo.findByCode(orderDTO.getCustomer());
+                        int currentPoints = customer.getLoyaltyPoints();
+                        int newPoints = currentPoints - 1;
+
+                        LoyaltyLevelEnum loyalty_level = null;
+                        if (newPoints < 50) {
+                            loyalty_level = LoyaltyLevelEnum.NEW;
+                        } else if (newPoints >= 50 && newPoints < 100) {
+                            loyalty_level = LoyaltyLevelEnum.BRONZE;
+                        } else if (newPoints >= 100 && newPoints < 200) {
+                            loyalty_level = LoyaltyLevelEnum.SILVER;
+                        } else if (newPoints >= 200) {
+                            loyalty_level = LoyaltyLevelEnum.GOLD;
+                        }
+                        customer.setLoyaltyPoints(newPoints);
+                        customer.setLoyaltyLevel(loyalty_level);
+                        customerRepo.save(customer);
+                }
+            }
         }
     }
 }

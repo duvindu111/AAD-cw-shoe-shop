@@ -13,4 +13,6 @@ public interface OrderDetailService {
     List<OrderDTO> searchOrdersByCode(String prefix);
 
     void refund(OrderDTO orderDTO);
+
+    void refundOneItem(OrderDTO orderDTO);
 }
