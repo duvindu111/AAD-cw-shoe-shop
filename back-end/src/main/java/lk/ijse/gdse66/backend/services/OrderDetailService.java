@@ -9,4 +9,8 @@ public interface OrderDetailService {
     List<OrderDTO> getAllOrders();
 
     List<OrderDetailDTO> getOrderDetailsById(String id);
+
+    List<OrderDTO> searchOrdersByCode(String prefix);
+
+    void refund(OrderDTO orderDTO);
 }

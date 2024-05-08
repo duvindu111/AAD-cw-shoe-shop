@@ -1,5 +1,7 @@
 package lk.ijse.gdse66.backend.controller;
 
+import jakarta.validation.Valid;
+import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.OrderDTO;
 import lk.ijse.gdse66.backend.dto.OrderDetailDTO;
 import lk.ijse.gdse66.backend.dto.ResponseDTO;
@@ -55,5 +57,29 @@ public class OrderDetailController {
             responseDTO.setData(exc);
             return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/searchByCode/{prefix}")
+    public ResponseEntity<ResponseDTO> searchOrdersByCode(@PathVariable String prefix){
+        try{
+            List<OrderDTO> orderList = orderDetailService.searchOrdersByCode(prefix);
+
+            responseDTO.setCode(HttpStatus.OK);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(orderList);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }catch (Exception exc){
+            responseDTO.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseDTO.setMessage(exc.getMessage());
+            responseDTO.setData(exc);
+            return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/refund")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void placeOrder(@Valid @RequestBody OrderDTO orderDTO){
+        System.out.println(orderDTO);
+        orderDetailService.refund(orderDTO);
     }
 }

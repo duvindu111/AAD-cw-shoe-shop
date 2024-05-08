@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderDetailRepo extends JpaRepository<OrderDetail, String>{
 
     List<OrderDetail> findAllByOrderDetailPK_OrderId(String orderId);
+
+    void deleteByOrderDetailPK_OrderId(String orderId);
 }
