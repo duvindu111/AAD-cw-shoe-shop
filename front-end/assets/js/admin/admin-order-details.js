@@ -23,7 +23,7 @@ function getAllOrders(){
                     <td class="d-none">${order.customer}</td> 
                     <td class="d-none">${order.employee}</td> 
                     <td class="order-details-button-td">
-                        <div class="d-flex">
+                        <div class="row mx-0" style="flex-wrap: nowrap">
                         <i class="fa-solid fa-binoculars" title="view" onclick="viewOrderDetails($(this))"></i>
                         <i class="fa-solid fa-arrow-rotate-left ml-3" title="refund" onclick="refundCompleteOrder($(this))"></i>
                         </div>                      

@@ -8,13 +8,16 @@
     color: palegoldenrod;
 }
 
+.sidebar-container{
+    background: linear-gradient(to right, #5e5122, #57370D);
+}
+
 .sidebar {
     min-height: 100vh;
     max-height: 100vh;
     position: sticky;
     top: 0;
     border-radius: 0px 0px 0px 0px;
-    background: linear-gradient(to right, #5e5122, #57370D);
 }
 
 .sidebar .sidebar-brand {
@@ -71,6 +74,13 @@
     }
 }
 
+.navbar{
+    background-image: url("../../assets/images/scroll.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .navbar-nav{
     column-gap: 10px;
 }
@@ -78,10 +88,21 @@
 #content{
     position: fixed;
     max-height: 100vh;
+    min-height: 100vh;
     overflow-y: scroll;
     width: calc( 100% - 14rem );
     background-color: #5e5122;
-    min-height: 100vh;
+    background-image: url("../../assets/images/building.png");
+    background-position-y: 40px;
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+@media all and (max-width:660px){
+    #content{
+        background-position-y: center;
+    }
 }
 
 .topbar{
@@ -252,6 +273,10 @@
 
 .text-palegoldenrod{
     color: palegoldenrod;
+}
+
+.bg-top-brown{
+    background-color: #907f42;
 }
 
 select[disabled]{
