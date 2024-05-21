@@ -39,6 +39,7 @@ $("#btnAdd").click(function (){
             url: 'http://localhost:8080/hello_shoes/api/v1/customer/save',
             method: 'POST',
             contentType: 'application/json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             data: JSON.stringify({"code": code, "name": name, "gender": gender,"loyaltyJoinedDate": loyalty_joined_date,
                 "loyaltyLevel": loyalty_level, "loyaltyPoints": loyalty_points, "dob": dob, "addressLine1": add_line_1,
                 "addressLine2": add_line_2, "addressLine3": add_line_3, "addressLine4": add_line_4,
@@ -96,6 +97,7 @@ $("#btnUpdate").click(function (){
             method: 'PATCH',
             dataType: 'json',
             contentType: 'application/json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             data: JSON.stringify({"code": code, "name": name, "gender": gender,"loyaltyJoinedDate": loyalty_joined_date,
                 "loyaltyLevel": loyalty_level, "loyaltyPoints": loyalty_points, "dob": dob, "addressLine1": add_line_1,
                 "addressLine2": add_line_2, "addressLine3": add_line_3, "addressLine4": add_line_4,
@@ -127,6 +129,7 @@ $("#btnDelete").click(function (){
             url: 'http://localhost:8080/hello_shoes/api/v1/customer/delete/' + code,
             method: 'DELETE',
             contentType: 'application/json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             success: function (response) {
                 alert("Customer deleted successfully");
                 clearFields();
@@ -165,6 +168,7 @@ $("#searchField").keyup(function (){
         url: "http://localhost:8080/hello_shoes/api/v1/customer/search/" + prefix,
         method: "GET",
         contentType: "application/json",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         success: function (response) {
             console.log(response);
 
@@ -233,11 +237,19 @@ $("#btnGetAll").click(function (){
     $("#searchField").val("");
 })
 
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(event);
+    if (jqxhr.status === 401) {
+        window.location.href = '../../login.html';
+    }
+});
+
 function getAllCustomers(){
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/customer/getall",
         method: "GET",
         contentType: "application/json",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         success: function (response) {
             console.log(response);
 
@@ -298,6 +310,7 @@ function generateNextCustomerId() {
         url: "http://localhost:8080/hello_shoes/api/v1/customer/getlastid",
         method: "GET",
         contentType: "application/json",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         success: function (response) {
             if(response == ""){
                 $("#cust_code").val("CUS-001");

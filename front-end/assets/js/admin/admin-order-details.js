@@ -5,6 +5,7 @@ $(document).ready(function () {
 function getAllOrders(){
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/getall",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -56,6 +57,7 @@ $("#searchField").keyup(function (){
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/searchByCode/" + prefix,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -102,6 +104,13 @@ $("#searchField").keyup(function (){
     })
 })
 
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(event);
+    if (jqxhr.status === 401) {
+        window.location.href = '../../login.html';
+    }
+});
+
 function viewOrderDetails(elm){
     $(".chosen").removeClass("chosen");
     elm.addClass("chosen");
@@ -112,6 +121,7 @@ function viewOrderDetails(elm){
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/getOrderDetailsById/" + orderId,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -165,6 +175,7 @@ function refundOneItem(current_elm, elm){
 
         $.ajax({
             url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/refundOne",
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify({"orderId": orderId, "totalPrice": totalPrice, "addedPoints": addedPoints,
@@ -196,6 +207,7 @@ function refundCompleteOrder(elm){
         let itemList = [];
         $.ajax({
             url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/getOrderDetailsById/" + orderId,
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: "GET",
             contentType: "application/json",
             success: function (response) {

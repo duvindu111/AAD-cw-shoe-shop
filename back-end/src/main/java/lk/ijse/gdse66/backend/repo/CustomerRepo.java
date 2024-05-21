@@ -21,4 +21,7 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
     Customer findAllByCode(String code);
 
     Customer findByCode(String code);
+
+    @Query(value = "SELECT * FROM customer WHERE DAY(dob) = DAY(CURDATE()) AND MONTH(dob) = MONTH(CURDATE())", nativeQuery = true)
+    List<Customer> findCustomersByBirthdayToday();
 }

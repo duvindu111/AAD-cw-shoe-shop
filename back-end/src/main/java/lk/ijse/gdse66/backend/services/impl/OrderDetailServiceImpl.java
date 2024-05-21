@@ -1,13 +1,11 @@
 package lk.ijse.gdse66.backend.services.impl;
 
 import jakarta.transaction.Transactional;
-import lk.ijse.gdse66.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.backend.dto.OrderDTO;
 import lk.ijse.gdse66.backend.dto.OrderDetailDTO;
 import lk.ijse.gdse66.backend.entity.Customer;
 import lk.ijse.gdse66.backend.entity.Order;
 import lk.ijse.gdse66.backend.entity.OrderDetail;
-import lk.ijse.gdse66.backend.entity.ShoeSize;
 import lk.ijse.gdse66.backend.repo.CustomerRepo;
 import lk.ijse.gdse66.backend.repo.OrderDetailRepo;
 import lk.ijse.gdse66.backend.repo.OrderRepo;

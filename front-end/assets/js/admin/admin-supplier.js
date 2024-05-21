@@ -21,6 +21,7 @@ $("#btnAdd").click(function (){
 
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/supplier/save',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({"code": code, "name": name, "category": category, "addressLine1": add_line_1,
@@ -63,6 +64,7 @@ $("#btnUpdate").click(function (){
 
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/supplier/update',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: 'PATCH',
             dataType: 'json',
             contentType: 'application/json',
@@ -95,6 +97,7 @@ $("#btnDelete").click(function (){
     if (result) {
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/supplier/delete/' + code,
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: 'DELETE',
             contentType: 'application/json',
             success: function (response) {
@@ -133,6 +136,7 @@ $("#searchField").keyup(function (){
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/supplier/search/" + prefix,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -197,9 +201,17 @@ $("#btnGetAll").click(function (){
     $("#searchField").val("");
 })
 
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(event);
+    if (jqxhr.status === 401) {
+        window.location.href = '../../login.html';
+    }
+});
+
 function getAllSuppliers(){
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/supplier/getall",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -253,6 +265,7 @@ function getAllSuppliers(){
 function generateNextSupplierId() {
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/supplier/getlastid",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {

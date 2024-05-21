@@ -54,6 +54,7 @@ $("#btnAdd").click(function (){
             method: 'POST',
             processData: false,
             contentType: false,
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             data: formData,
             success: function (response) {
                 alert("Employee details saved successfully");
@@ -122,6 +123,7 @@ $("#btnUpdate").click(function (){
             method: 'PATCH',
             processData: false,
             contentType: false,
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             data: formData,
             success: function (response) {
                 alert("Employee details updated successfully");
@@ -150,6 +152,7 @@ $("#btnDelete").click(function (){
             url: 'http://localhost:8080/hello_shoes/api/v1/employee/delete/' + code,
             method: 'DELETE',
             contentType: 'application/json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             success: function (response) {
                 alert("Employee deleted successfully");
                 clearFields();
@@ -186,6 +189,7 @@ $("#searchField").keyup(function (){
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/employee/search/" + prefix,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -256,6 +260,13 @@ $("#btnGetAll").click(function (){
     getAllEmployees();
     $("#searchField").val("");
 })
+
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(event);
+    if (jqxhr.status === 401) {
+        window.location.href = '../../login.html';
+    }
+});
 
 function onTableRowClicked() {
     $("#tableEmployeeBody>tr").click(function (){
@@ -330,6 +341,7 @@ function onTableRowClicked() {
 function getAllEmployees(){
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/employee/getall",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -393,6 +405,7 @@ function generateNextEmployeeId() {
         url: "http://localhost:8080/hello_shoes/api/v1/employee/getlastid",
         method: "GET",
         contentType: "application/json",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         success: function (response) {
             if(response == ""){
                 $("#emp_code").val("EMP-001");

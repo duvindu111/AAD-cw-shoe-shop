@@ -5,6 +5,7 @@ $(document).ready(function () {
 function getAllItems(){
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/inventory/getall",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -57,6 +58,7 @@ $("#price-search").click(function () {
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/inventory/getAllByPrice/" + min_price + "/" + max_price,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -103,6 +105,7 @@ $("#name-search").keyup(function () {
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/inventory/search/" + prefix,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -143,6 +146,7 @@ $(".rbGender").change(function (){
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/inventory/getAllByCategoryNamePart/ " + value + " ",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -183,6 +187,7 @@ $(".rbOccasion").change(function (){
 
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/inventory/getAllByCategoryNamePart/ " + value + " ",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -219,6 +224,13 @@ $("#filter-reset").click(function (){
     clearFilterFields();
     getAllItems();
 })
+
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(event);
+    if (jqxhr.status === 401) {
+        window.location.href = '../login.html';
+    }
+});
 
 function clearFilterFields(){
     $("#name-search").val("");

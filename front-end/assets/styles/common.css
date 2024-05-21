@@ -59,6 +59,7 @@
       top: 0;
       padding-left: 10px;
       padding-right: 20px;
+      background: linear-gradient(to right, #5e5122, #57370D);
   }
 
   .sidebar-brand{

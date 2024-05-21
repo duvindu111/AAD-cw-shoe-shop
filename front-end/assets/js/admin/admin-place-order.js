@@ -11,6 +11,7 @@ $("#item_code").change(function () {
 
     $.ajax({
         url: 'http://localhost:8080/hello_shoes/api/v1/place_order/getItemByCode/' + itemCode,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: 'GET',
         contentType: 'application/json',
         success: function (response) {
@@ -40,6 +41,7 @@ $("#item_size").change(function () {
 
     $.ajax({
         url: 'http://localhost:8080/hello_shoes/api/v1/place_order/getQtyByItemCodeAndSize/' + itemCode + '/' + size,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: 'GET',
         contentType: 'application/json',
         success: function (response) {
@@ -61,6 +63,7 @@ $("#cust_code").change(function () {
     if(custCode != ""){
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/place_order/getCustomerByCode/' + custCode,
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: 'GET',
             contentType: 'application/json',
             success: function (response) {
@@ -205,6 +208,7 @@ $(".btn_place_order").click(function (){
 
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/place_order/placeOrder',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({"orderId": order_id, "orderDate": order_date, "customer": cust_code, "customerName": cust_name, "totalPrice": total,
@@ -252,6 +256,13 @@ $("#paid_amount").keyup(function(){
         $(".cash-details .btn_place_order").prop("disabled", false);
     }else{
         $(".cash-details .btn_place_order").prop("disabled", true);
+    }
+});
+
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(event);
+    if (jqxhr.status === 401) {
+        window.location.href = '../../../login.html';
     }
 });
 
@@ -362,8 +373,10 @@ function removeIconOnClicked(){
 function generateNextOrderId(){
     $.ajax({
         url: "http://localhost:8080/hello_shoes/api/v1/place_order/getlastid",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: "GET",
         contentType: "application/json",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         success: function (last_id) {
             if(last_id == ""){
                 $("#order_id").text("ORD-001");
@@ -384,6 +397,7 @@ function loadItemCodes(){
     return new Promise(function(resolve, reject) {
         $.ajax({
             url: 'http://localhost:8080/hello_shoes/api/v1/place_order/getItemCodes',
+            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
             method: 'GET',
             contentType: 'application/json',
             success: function (response) {
@@ -405,6 +419,7 @@ function loadItemCodes(){
 function loadCustomerCodes(){
     $.ajax({
         url: 'http://localhost:8080/hello_shoes/api/v1/place_order/getCustomerCodes',
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: 'GET',
         contentType: 'application/json',
         success: function (response) {
@@ -425,6 +440,7 @@ function loadCustomerCodes(){
 function getSizesByItemCode(itemCode) {
     $.ajax({
         url: 'http://localhost:8080/hello_shoes/api/v1/place_order/getSizesByItemCode/' + itemCode,
+        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
         method: 'GET',
         contentType: 'application/json',
         success: function (response) {
