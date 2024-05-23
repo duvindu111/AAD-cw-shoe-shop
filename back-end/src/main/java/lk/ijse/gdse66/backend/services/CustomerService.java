@@ -18,4 +18,5 @@ public interface CustomerService {
 
     List<CustomerDTO> searchCustomersByName(String prefix);
 
+    long getCustomerCount();
 }

@@ -72,4 +72,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDTO> searchCustomersByName(String prefix) {
         return customerRepo.findAllByNameStartingWith(prefix).stream().map(customer -> mapper.map(customer, CustomerDTO.class)).toList();
     }
+
+    @Override
+    public long getCustomerCount() {
+        return customerRepo.count();
+    }
 }

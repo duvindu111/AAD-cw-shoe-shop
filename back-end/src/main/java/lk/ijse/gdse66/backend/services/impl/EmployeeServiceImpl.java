@@ -38,8 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void updateEmployee(EmployeeDTO employeeDTO) {
         if(!employeeRepo.existsById(employeeDTO.getCode())){
             throw new NotFoundException("No such employee to update | employee Id: " + employeeDTO.getCode());
-        }else if(employeeRepo.existsByEmail(employeeDTO.getEmail())){
-            throw new DuplicateRecordException("Employee with email " + employeeDTO.getEmail() + " already exists");
         }else{
             employeeRepo.save(mapper.map(employeeDTO, Employee.class));
         }
@@ -75,5 +73,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public List<EmployeeDTO> searchEmployeesByName(String prefix) {
         return employeeRepo.findAllByNameStartingWith(prefix).stream().map(employee -> mapper.map(employee, EmployeeDTO.class)).toList();
+    }
+
+    @Override
+    public EmployeeDTO getEmployeeByEmail(String email) {
+        Employee employee = employeeRepo.findByEmail(email);
+        if(employee == null){
+            throw new NotFoundException("No such employee with email: " + email);
+        }else{
+            return mapper.map(employee, EmployeeDTO.class);
+        }
     }
 }

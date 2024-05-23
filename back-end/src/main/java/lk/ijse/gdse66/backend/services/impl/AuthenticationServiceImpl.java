@@ -52,14 +52,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String generatedToken = jwtService.generateToken(user);
         String role = user.getRole().name();
 
-//        try {
-//            EmailUtil.sendEmail("duvinduthathsara@gmail.com", "this is the message", "message body brother");
-//            System.out.println("Email sent successfully.");
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//            System.out.println("Failed to send email.");
-//        }
-
         return JWTAuthResponse.builder().token(generatedToken).role(role).build();
     }
 

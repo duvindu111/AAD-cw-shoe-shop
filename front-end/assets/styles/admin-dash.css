@@ -4,3 +4,26 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+#salesPerDayBarChart{
+    max-height: 350px;
+}
+
+#mostSaleQtyPerDayBarChart{
+    max-height: 350px;
+}
+
+#itemDetailsCardBody>div{
+    width: max-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+#itemDetailsCardBody>div>h6{
+    /*font-size: 14px;*/
+}
+
+#imageDiv{
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+}

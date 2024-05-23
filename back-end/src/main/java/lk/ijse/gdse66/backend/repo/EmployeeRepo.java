@@ -17,4 +17,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, String> {
     Boolean existsByEmail(String email);
 
     Employee findByCode(String code);
+
+    Employee findByEmail(String email);
 }

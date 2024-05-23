@@ -75,6 +75,20 @@
     }
 }
 
+#topbar_user_img{
+    width: 45px;
+    height: 45px;
+}
+
+#headerDropdown{
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    left: auto !important;
+    width: max-content;
+    border-color: palegoldenrod;
+}
+
 .navbar{
     background-image: url("../../assets/images/scroll.png");
     background-size: contain;
@@ -284,4 +298,31 @@ select[disabled]{
     background-color: #907f42 !important;
     color: #d2cb86;
 }
+
+.max-width-100{
+    max-width: 100%;
+}
+
+#logoutModal{
+    background-color: #907f42;
+    background-image: url("../../assets/images/building.png");
+    background-position-y: 40px;
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+#logoutModal .modal-content{
+    background-color: #57370D;
+    border-radius: 10px;
+}
+
+#logoutModal .modal-header{
+    border-bottom: 1px solid rgba(238, 232, 170, 0);
+}
+
+#logoutModal .modal-footer{
+    border-top: 1px solid rgba(238, 232, 170, 0);
+}
+
 /* end of topbar + content */

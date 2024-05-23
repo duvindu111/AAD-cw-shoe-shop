@@ -18,4 +18,6 @@ public interface EmployeeService {
     String getLastId();
 
     List<EmployeeDTO> searchEmployeesByName(String prefix);
+
+    EmployeeDTO getEmployeeByEmail(String email);
 }

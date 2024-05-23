@@ -42,59 +42,45 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item mt-3">
-                <a class="nav-link" href="admin-dashboard.html">
-                <span class="d-flex align-items-center">
-                <span>Dashboard</span>
-                </span>
-                </a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                <span class="d-flex align-items-center">
-                <span>Customers</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin-employees.html">
-                <span class="d-flex align-items-center">
-                <span>Employees</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="admin-suppliers.html">
-                <span class="d-flex align-items-center">
-                <span>Suppliers</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin-inventory-manage.html">
-                <span class="d-flex align-items-center">
-                <span>Inventory</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin-products.html">
-                <span class="d-flex align-items-center">
-                <span>Products</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin-place-order.html">
+                <a class="nav-link" href="user-place-order.html">
                 <span class="d-flex align-items-center">
                 <span>Place Order</span>
                 </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin-order-details.html">
+                <a class="nav-link" href="user-inventory-manage.html">
                 <span class="d-flex align-items-center">
-                <span>Order Details</span>
+                <span>Inventory</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="user-products.html">
+                <span class="d-flex align-items-center">
+                <span>Products</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="user-customers.html">
+                <span class="d-flex align-items-center">
+                <span>Customers</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="">
+                <span class="d-flex align-items-center">
+                <span>Suppliers</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="user-employees.html">
+                <span class="d-flex align-items-center">
+                <span>Employees</span>
                 </span>
                 </a>
             </li>
@@ -140,88 +126,6 @@
 
             <!-- Start of Content -->
             <div class="container-fluid">
-
-<!--                text-fields-->
-                <div class="row">
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_code" class="form-label input-label">Supplier Code</label>
-                        <input disabled type="text" class="form-control input-field" id="supp_code">
-                        <label id="el_supp_code" class="error-label text-danger"><small>Invalid Format. Supplier Code
-                            has to be in the format of "SUP-000".</small></label>
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_name" class="form-label input-label">Supplier Name</label>
-                        <input type="text" class="form-control input-field" id="supp_name">
-                        <label id="el_supp_name" class="error-label text-danger"><small>Supplier name can only contain
-                            letters and white spaces</small></label>
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_category" class="form-label input-label">Category</label>
-                        <select id="supp_category" class="form-select form-control select-field">
-                            <option class="" disabled selected>Select Category</option>
-                            <option value="LOCAL">Local</option>
-                            <option value="INTERNATIONAL">International</option>
-                        </select>
-                    </div>
-                    <div class="col-12 text-center">
-                        <h6 class="divider_text_address">- Address -</h6>
-                    </div>
-                    <hr>
-                    <div class="col-sm-6 col-xl-4 col-xl-4 mb-4">
-                        <label for="add_line_1" class="form-label input-label">Building No. / Name</label>
-                        <input type="text" class="form-control input-field" id="add_line_1">
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="add_line_2" class="form-label input-label">Lane Name</label>
-                        <input type="text" class="form-control input-field" id="add_line_2">
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="add_line_3" class="form-label input-label">Main City</label>
-                        <input type="text" class="form-control input-field" id="add_line_3">
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="add_line_4" class="form-label input-label">Main State</label>
-                        <input type="text" class="form-control input-field" id="add_line_4">
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="add_line_5" class="form-label input-label">Postal Code</label>
-                        <input type="text" class="form-control input-field" id="add_line_5">
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="add_line_6" class="form-label input-label">Origin Country</label>
-                        <input type="text" class="form-control input-field" id="add_line_6">
-                    </div>
-                    <div class="col-12 text-center">
-                        <h6 class="divider_text_address">---</h6>
-                    </div>
-
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_contact_mobile" class="form-label input-label">Mobile Number</label>
-                        <input type="text" class="form-control input-field" id="supp_contact_mobile">
-                        <label id="el_cust_contact_mobile" class="error-label text-danger"><small>Invalid contact number
-                        </small></label>
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_contact_landline" class="form-label input-label">Landline Number</label>
-                        <input type="text" class="form-control input-field" id="supp_contact_landline">
-                        <label id="el_cust_contact_landline" class="error-label text-danger"><small>Invalid contact number
-                        </small></label>
-                    </div>
-                    <div class="col-sm-6 col-xl-4 mb-4">
-                        <label for="supp_email" class="form-label input-label">Email</label>
-                        <input type="email" class="form-control input-field" id="supp_email">
-                        <label id="el_cust_email" class="error-label text-danger"><small>Invalid email address
-                        </small></label>
-                    </div>
-                </div>
-
-<!--                buttons-->
-                <div class="row py-2 px-3">
-                    <button id="btnAdd" type="button" class="btn mr-2 brown-btn">Add</button>
-                    <button disabled id="btnUpdate" type="button" class="btn mr-2 brown-btn">Update</button>
-                    <button disabled id="btnDelete" type="button" class="btn mr-2 brown-btn">Delete</button>
-                    <button id="btnReset" type="button" class="btn reset-btn">Reset</button>
-                </div>
 
 <!--                search tab-->
                 <div class="row">

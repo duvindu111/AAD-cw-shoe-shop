@@ -113,14 +113,28 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle"
-                                 src="">
-                        </a>
+                <ul class="navbar-nav ml-auto d-flex">
+                    <l1 class="d-flex">
+                        <h6 id="code_of_employee" class="align-self-center text-palegoldenrod"></h6>
+                    </l1>
+                    <li class="d-flex">
+                        <h6 class="align-self-center text-palegoldenrod">|</h6>
                     </li>
+                    <l1 class="d-flex">
+                        <h6 id="name_of_user" class="align-self-center text-palegoldenrod"></h6>
+                    </l1>
+                    <li class="nav-item dropdown no-arrow">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img id="topbar_user_img" class="img-profile rounded-circle" src="" alt="user profile pic">
+                            </a>
+                            <ul id="headerDropdown" class="dropdown-menu bg-top-brown">
+                                <li><a id="logoutbtn" class="dropdown-item text-palegoldenrod" href="#" data-bs-toggle="modal"
+                                       data-bs-target="#logoutModal">Log out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
                 </ul>
             </nav>
 
@@ -131,16 +145,133 @@
                     <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
                         <div class="card text-palegoldenrod shadow bg-top-brown dash-mini-box border-0">
                             <div class="card-body">
-                                Employee Count<i class="fa-solid fa-circle-info ml-2" title="em"></i>
-                                <div class="text-palegoldenrod">8</div>
+                                Employee Count<i id="empCountInfo" class="fa-solid fa-circle-info ml-2" title=""></i>
+                                <div id="employeeCount" class="text-palegoldenrod">0</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
                         <div class="card text-palegoldenrod shadow bg-top-brown dash-mini-box border-0">
                             <div class="card-body">
-                                Employee Count
-                                <div class="text-palegoldenrod">8</div>
+                                Supplier Count<i id="suppCountInfo" class="fa-solid fa-circle-info ml-2" title=""></i>
+                                <div id="supplierCount" class="text-palegoldenrod">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-xl-3 mb-4">
+                        <div class="card text-palegoldenrod shadow bg-top-brown dash-mini-box border-0">
+                            <div class="card-body">
+                                Customer Count
+                                <div id="customerCount" class="text-palegoldenrod">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-xl-6 mb-4">
+                        <div class="card text-palegoldenrod shadow bg-top-brown dash-mini-box border-0">
+                            <div class="card-body">
+                                <h6 class="mb-3">Total sales per day</h6>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label input-label">Select year</label>
+                                        <select id="selectYears" class="form-select form-control select-field">
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label input-label">Select month</label>
+                                        <select id="selectMonth" class="form-select form-control select-field">
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <canvas id="salesPerDayBarChart" width="400" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6 mb-4">
+                        <div class="card text-palegoldenrod shadow bg-top-brown dash-mini-box border-0">
+                            <div class="card-body">
+                                <h6 class="mb-3">Most sale item per day</h6>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label input-label">Select year</label>
+                                        <select id="selectYears1" class="form-select form-control select-field">
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label input-label">Select month</label>
+                                        <select id="selectMonth1" class="form-select form-control select-field">
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <canvas id="mostSaleQtyPerDayBarChart" width="400" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="imageDiv" class="mb-4 max-width-100">
+                        <div class="card text-palegoldenrod shadow bg-top-brown dash-mini-box border-0 d-flex flex-column
+                            col-12 col-sm-6 col-xl-4">
+                            <div class="card-body pb-0">
+                                <h6 class="mb-3">Most sale item so far</h6>
+                                <img id="mostSaleItemImg" class="img-fluid" src="" alt="">
+                            </div>
+                            <div id="itemDetailsCardBody" class="card-body max-width-100" style="width: max-content">
+                                <div class="d-flex">
+                                    <h6>Item code:&nbsp;</h6>
+                                    <h6 id="itemCode"></h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6>Item name:&nbsp;</h6>
+                                    <h6 id="itemName"></h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6>Category:&nbsp;</h6>
+                                    <h6 id="itemCategory"></h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6>Buying price:&nbsp;</h6>
+                                    <h6 id="itemBuyingPrice"></h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6>Selling price:&nbsp;</h6>
+                                    <h6 id="itemSellingPrice"></h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6>Supplier code:&nbsp;</h6>
+                                    <h6 id="itemSuppCode"></h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6>Supplier name:&nbsp;</h6>
+                                    <h6 id="itemSuppName"></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -162,15 +293,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title text-palegoldenrod" id="loModalHeaderText">Ready to Leave?</h5>
+                <button class="close text-palegoldenrod" type="button" data-dismiss="modal" aria-label="Close"
+                        onclick="$('#logoutModal').modal('hide')">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body text-palegoldenrod">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../../login.html">Logout</a>
+                <button class="btn bg-top-brown text-palegoldenrod" type="button" data-dismiss="modal"
+                        onclick="$('#logoutModal').modal('hide')">Cancel</button>
+                <a id="modalLogoutBtn" class="btn bg-top-brown text-palegoldenrod" href="../../login.html">Logout</a>
             </div>
         </div>
     </div>
@@ -182,6 +315,12 @@
 <!--bootstrap js-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="../../assets/js/sidebar.js"></script>
+<script src="../../assets/js/common.js"></script>
 <!--end of common js --------------------- -->
+
+<!--uniqe js-->
+<script src="../../assets/js/admin/admin-dash.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
