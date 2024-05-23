@@ -29,11 +29,13 @@ function fileToBase64(file, callback) {
     };
 }
 
-$("#modalLogoutBtn").onclick(function (){
+$("#modalLogoutBtn").on("click", function (){
    localStorage.removeItem("hs_user_email");
    localStorage.removeItem("hs_user_code");
    localStorage.removeItem("hs_user_name");
    localStorage.removeItem("hs_user_picture");
+   localStorage.removeItem("hs_token");
+   window.location.href = "../../login.html";
 });
 
 // function getEmployee() {

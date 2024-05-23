@@ -238,11 +238,37 @@ $("#added_points").keyup(function (){
 });
 
 $(".btn_next").click(function (){
-   $("#cash_header").text("Order ID: " + $("#order_id").text());
-   $(".admin-details").css("display", "none");
+   let admin_email = $("#admin_email").val();
+   let admin_password = $("#admin_password").val();
 
-   $("#cash_total").val($("#total_price").text());
-   $(".cash-details").css("display", "flex");
+   if(admin_email == "" || admin_password == ""){
+       alert("Please fill in all the fields");
+   }else{
+       $.ajax({
+           url: 'http://localhost:8080/hello_shoes/api/v1/auth/check_credentials',
+           headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
+           method: 'POST',
+           dataType: 'json',
+           contentType: 'application/json',
+           data: JSON.stringify({"email": admin_email, "password": admin_password}),
+           success: function (response) {
+               console.log(response);
+
+               if(response == true){
+                   $("#cash_header").text("Order ID: " + $("#order_id").text());
+                   $(".admin-details").css("display", "none");
+                   $("#cash_total").val($("#total_price").text());
+                   $(".cash-details").css("display", "flex");
+               }else{
+                     alert("Invalid credentials. Please check again.");
+               }
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+               console.error(jqXHR);
+               alert(jqXHR.responseJSON.message);
+           }
+       });
+   }
 });
 
 $("#paid_amount").keyup(function(){

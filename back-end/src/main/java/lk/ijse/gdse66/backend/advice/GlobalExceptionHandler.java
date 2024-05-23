@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.backend.advice;
 
 import lk.ijse.gdse66.backend.services.exceptions.DuplicateRecordException;
+import lk.ijse.gdse66.backend.services.exceptions.InvalidAccessRoleException;
 import lk.ijse.gdse66.backend.services.exceptions.NotFoundException;
 import lk.ijse.gdse66.backend.services.exceptions.ServiceException;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,8 @@ public class GlobalExceptionHandler {
             errorAttribute = getCommonErrorAttribute(HttpStatus.CONFLICT);
         } else if (exp instanceof NotFoundException) {
             errorAttribute = getCommonErrorAttribute(HttpStatus.NOT_FOUND);
+        } else if (exp instanceof InvalidAccessRoleException) {
+            errorAttribute = getCommonErrorAttribute(HttpStatus.FORBIDDEN);
         }else{
             errorAttribute = getCommonErrorAttribute(HttpStatus.INTERNAL_SERVER_ERROR);
         }

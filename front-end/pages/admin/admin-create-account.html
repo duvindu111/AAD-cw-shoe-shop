@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Customers</title>
+    <title>New Account</title>
 
 <!--    google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
     <link href="../../assets/styles/common.css" rel="stylesheet">
 
 <!--    unique styles-->
-    <link href="../../assets/styles/admin-customer.css" rel="stylesheet">
+    <link href="../../assets/styles/admin-create-account.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -42,28 +42,14 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="user-place-order.html">
+            <li class="nav-item mt-3">
+                <a class="nav-link" href="admin-dashboard.html">
                 <span class="d-flex align-items-center">
-                <span>Place Order</span>
+                <span>Dashboard</span>
                 </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="user-inventory-manage.html">
-                <span class="d-flex align-items-center">
-                <span>Inventory</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="user-products.html">
-                <span class="d-flex align-items-center">
-                <span>Products</span>
-                </span>
-                </a>
-            </li>
-            <li class="nav-item active">
                 <a class="nav-link" href="">
                 <span class="d-flex align-items-center">
                 <span>Customers</span>
@@ -71,16 +57,51 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="user-suppliers.html">
+                <a class="nav-link" href="admin-employees.html">
+                <span class="d-flex align-items-center">
+                <span>Employees</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin-suppliers.html">
                 <span class="d-flex align-items-center">
                 <span>Suppliers</span>
                 </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="user-employees.html">
+                <a class="nav-link" href="admin-inventory-manage.html">
                 <span class="d-flex align-items-center">
-                <span>Employees</span>
+                <span>Inventory</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin-products.html">
+                <span class="d-flex align-items-center">
+                <span>Products</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin-place-order.html">
+                <span class="d-flex align-items-center">
+                <span>Place Order</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin-order-details.html">
+                <span class="d-flex align-items-center">
+                <span>Order Details</span>
+                </span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="admin-create-account.html">
+                <span class="d-flex align-items-center">
+                <span>Create User Account</span>
                 </span>
                 </a>
             </li>
@@ -127,36 +148,6 @@
             <!-- Start of Content -->
             <div class="container-fluid">
 
-<!--                search tab-->
-                <div class="row">
-                    <div class="col-xl-4 col-md-6 col-sm-8 ">
-                        <div class="input-group mb-2 mt-5">
-                            <input id="searchField"  type="text" class="form-control search-field" placeholder="Search By Name">
-                            <button class="btn brown-btn btn-getall" type="button" id="btnGetAll">Get All</button>
-                        </div>
-                    </div>
-                </div>
-
-<!--                table-->
-                <table id="tableCustomer" class="table table-responsive table-border-radius-5 mb-5 mt-4 brown-scrollbar">
-                    <thead class="brownTableHead">
-                    <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Loyalty Membership Date</th>
-                        <th scope="col">Loyalty Level</th>
-                        <th scope="col">Loyalty Points</th>
-                        <th scope="col">DOB</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Contact Number</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Last Purchase</th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableCustomerBody" class="brownTableBody">
-                    </tbody>
-                </table>
             </div>
             <!-- End of Content -->
         </div>
@@ -167,6 +158,46 @@
 </div>
 <!-- End of Page Wrapper -->
 
+<!--create account modal-->
+<div class="modal fade" id="new_account_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     data-bs-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-transparent">
+            <div class="modal-body bg-transparent">
+                <div class="container bg-light d-md-flex align-items-center px-0 py-0">
+                    <div class="card box2 shadow-sm">
+                        <div class="d-flex align-items-center justify-content-between pb-md-4 px-md-5 p-4 pt-5 "><span id="cash_header" class="h5 fw-bold m-0">Create new account
+                            <i id="closeIcon" class="fa-regular fa-circle-xmark ml-2"></i></span>
+                        </div>
+
+                        <div class="row mx-0 w-100 justify-content-center admin-details">
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Email</span>
+                                    <div class="inputWithIcon"><input id="user_email" class="form-control" type="text"></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Password</span>
+                                    <div class="inputWithIcon"><input id="user_password" class="form-control" type="password" value=""></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column px-md-5 px-4 mb-4"><span>Confirm password</span>
+                                    <div class="inputWithIcon"><input id="confirm_user_password" class="form-control" type="password" value=""></div>
+                                </div>
+                            </div>
+                            <div class="col-12 px-md-5 px-4 mt-3 mb-4">
+                                <div class="btn btn_create_account w-100">Create Account</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -175,7 +206,7 @@
             <div class="modal-header">
                 <h5 class="modal-title text-palegoldenrod" id="loModalHeaderText">Ready to Leave?</h5>
                 <button class="close text-palegoldenrod" type="button" data-dismiss="modal" aria-label="Close"
-                        onclick="$('#logoutModal').modal('hide')">
+                     onclick="$('#logoutModal').modal('hide')">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -199,6 +230,6 @@
 <!--end of common js --------------------- -->
 
 <!--uniqe js-->
-<script src="../../assets/js/admin/admin-customer.js"></script>
+<script src="../../assets/js/admin/admin-create_account.js"></script>
 </body>
 </html>

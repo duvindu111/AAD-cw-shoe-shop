@@ -1,0 +1,12 @@
+.btn_create_account{
+    background-color: #907f42;
+    color: palegoldenrod;
+}
+
+#closeIcon{
+    cursor: pointer;
+}
+
+#closeIcon:hover{
+    color: #907f42;
+}

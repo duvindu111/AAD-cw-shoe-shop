@@ -164,95 +164,121 @@ function refundOneItem(current_elm, elm){
         let paymentMethod = elm.closest('tr').find('td:eq(3)').text();
         let employee_code = elm.closest('tr').find('td:eq(8)').text();
 
-        let itemList = [];
-        let item = {
-            itemCode: current_elm.closest('tr').find('td:first').text(),
-            size: current_elm.closest('tr').find('td:eq(2)').text(),
-            qty: current_elm.closest('tr').find('td:eq(3)').text(),
-            unitPrice: current_elm.closest('tr').find('td:eq(4)').text()
-        }
-        itemList.push(item);
+        let orderTimestamp = elm.closest('tr').find('td:eq(1)').text();
+        let datePart = new Date(orderTimestamp.split('T')[0]);
+        let currentDate = new Date();
+        const diffTime = currentDate - datePart;
+        const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-        $.ajax({
-            url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/refundOne",
-            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({"orderId": orderId, "totalPrice": totalPrice, "addedPoints": addedPoints,
-                "employee": employee_code, "customer": customer_code, "orderDetailList": itemList, "cashierName": cashier_name,
-                "paymentMethod": paymentMethod
-            }),
-            success: function (response) {
-                console.log(response);
-                alert("Item refunded successfully");
+        console.log("diffdays: ");
+        console.log(diffDays);
 
-                $("#detailModal").modal('hide');
-                getAllOrders();
-            },
-            error: function (jqxhr, textStatus, error) {
-                alert("refunding item failed.")
-                console.log(jqxhr);
+        if (diffDays >= 3) {
+            alert("The date is more than 3 days from the current date. You can't refund the order.")
+        } else {
+            let itemList = [];
+            let item = {
+                itemCode: current_elm.closest('tr').find('td:first').text(),
+                size: current_elm.closest('tr').find('td:eq(2)').text(),
+                qty: current_elm.closest('tr').find('td:eq(3)').text(),
+                unitPrice: current_elm.closest('tr').find('td:eq(4)').text()
             }
-        })
+            itemList.push(item);
 
+            $.ajax({
+                url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/refundOne",
+                headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({"orderId": orderId, "totalPrice": totalPrice, "addedPoints": addedPoints,
+                    "employee": employee_code, "customer": customer_code, "orderDetailList": itemList, "cashierName": cashier_name,
+                    "paymentMethod": paymentMethod
+                }),
+                success: function (response) {
+                    console.log(response);
+                    alert("Item refunded successfully");
+
+                    $("#detailModal").modal('hide');
+                    getAllOrders();
+                },
+                error: function (jqxhr, textStatus, error) {
+                    alert("refunding item failed.")
+                    console.log(jqxhr);
+                }
+            })
+        }
     }
 }
 
 function refundCompleteOrder(elm){
-    let result = window.confirm("Do you want to refund the complete order?");
-    if (result) {
-        let orderId = elm.closest('tr').find('td:first').text();
-        console.log(orderId);
+    let orderTimestamp = elm.closest('tr').find('td:eq(1)').text();
+    let datePart = new Date(orderTimestamp.split('T')[0]);
+    let currentDate = new Date();
+    const diffTime = currentDate - datePart;
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-        let itemList = [];
-        $.ajax({
-            url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/getOrderDetailsById/" + orderId,
-            headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
-            method: "GET",
-            contentType: "application/json",
-            success: function (response) {
-                console.log(response);
-                $.each(response.data, function (index, order) {
-                    let item = {
-                        itemCode: order.itemCode,
-                        size: order.size,
-                        qty: order.qty
-                    }
-                    itemList.push(item);
-                });
+    console.log("diffdays: ");
+    console.log(diffDays);
 
-                let addedPoints = elm.closest('tr').find('td:eq(4)').text();
-                let totalPrice = elm.closest('tr').find('td:eq(2)').text();
-                let customer_code = elm.closest('tr').find('td:eq(7)').text();
-                let cashier_name = elm.closest('tr').find('td:eq(6)').text();
-                let paymentMethod = elm.closest('tr').find('td:eq(3)').text();
-                let employee_code = elm.closest('tr').find('td:eq(8)').text();
+    if (diffDays >= 3) {
+        alert("The date is more than 3 days from the current date. You can't refund the order.")
+    } else {
+        let result = window.confirm("Do you want to refund the complete order?");
+        if (result) {
+            let orderId = elm.closest('tr').find('td:first').text();
+            console.log(orderId);
 
-                $.ajax({
-                    url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/refund",
-                    method: "POST",
-                    contentType: "application/json",
-                    data: JSON.stringify({"orderId": orderId, "totalPrice": totalPrice, "addedPoints": addedPoints,
-                        "employee": employee_code, "customer": customer_code, "orderDetailList": itemList, "cashierName": cashier_name,
-                        "paymentMethod": paymentMethod
-                    }),
-                    success: function (response) {
-                        console.log(response);
-                        alert("Order refunded successfully");
+            let itemList = [];
+            $.ajax({
+                url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/getOrderDetailsById/" + orderId,
+                headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
+                method: "GET",
+                contentType: "application/json",
+                success: function (response) {
+                    console.log(response);
+                    $.each(response.data, function (index, order) {
+                        let item = {
+                            itemCode: order.itemCode,
+                            size: order.size,
+                            qty: order.qty
+                        }
+                        itemList.push(item);
+                    });
 
-                        $("#detailModal").modal('hide');
-                        getAllOrders();
-                    },
-                    error: function (jqxhr, textStatus, error) {
-                        alert("refunding order failed.")
-                        console.log(jqxhr);
-                    }
-                })
-            },
-            error: function (jqxhr, textStatus, error) {
-                alert("retrieving order details failed. inside refund order.")
-                console.log(jqxhr);
-            }
-        })
+                    let addedPoints = elm.closest('tr').find('td:eq(4)').text();
+                    let totalPrice = elm.closest('tr').find('td:eq(2)').text();
+                    let customer_code = elm.closest('tr').find('td:eq(7)').text();
+                    let cashier_name = elm.closest('tr').find('td:eq(6)').text();
+                    let paymentMethod = elm.closest('tr').find('td:eq(3)').text();
+                    let employee_code = elm.closest('tr').find('td:eq(8)').text();
+
+                    $.ajax({
+                        url: "http://localhost:8080/hello_shoes/api/v1/orderdetails/refund",
+                        headers: { "Authorization": "Bearer " + localStorage.getItem("hs_token") },
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({"orderId": orderId, "totalPrice": totalPrice, "addedPoints": addedPoints,
+                            "employee": employee_code, "customer": customer_code, "orderDetailList": itemList, "cashierName": cashier_name,
+                            "paymentMethod": paymentMethod
+                        }),
+                        success: function (response) {
+                            console.log(response);
+                            alert("Order refunded successfully");
+
+                            $("#detailModal").modal('hide');
+                            getAllOrders();
+                        },
+                        error: function (jqxhr, textStatus, error) {
+                            alert("refunding order failed.")
+                            console.log(jqxhr);
+                        }
+                    })
+                },
+                error: function (jqxhr, textStatus, error) {
+                    alert("retrieving order details failed. inside refund order.")
+                    console.log(jqxhr);
+                }
+            })
+        }
     }
 }

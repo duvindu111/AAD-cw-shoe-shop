@@ -3,6 +3,7 @@ package lk.ijse.gdse66.backend.controller;
 import lk.ijse.gdse66.backend.auth.request.SignInRequest;
 import lk.ijse.gdse66.backend.auth.request.SignUpRequest;
 import lk.ijse.gdse66.backend.auth.response.JWTAuthResponse;
+import lk.ijse.gdse66.backend.dto.UserDTO;
 import lk.ijse.gdse66.backend.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,18 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<JWTAuthResponse> signUp(@RequestBody SignUpRequest signUpRequest){
+        System.out.println(signUpRequest);
         return ResponseEntity.ok(authenticationService.signUp(signUpRequest));
     }
 
     @GetMapping("/send_wishes")
     public List<String> sendWishes(){
         return authenticationService.sendWishes();
+    }
+
+    @PostMapping("/check_credentials")
+    public Boolean checkCredentials(@RequestBody UserDTO userDTO){
+        System.out.println(userDTO.getEmail() + " " + userDTO.getPassword() + " " + userDTO.getRole());
+        return authenticationService.checkCredentials(userDTO);
     }
 }

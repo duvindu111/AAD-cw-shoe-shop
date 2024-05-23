@@ -5,13 +5,18 @@ import lk.ijse.gdse66.backend.auth.request.SignUpRequest;
 import lk.ijse.gdse66.backend.auth.response.JWTAuthResponse;
 import lk.ijse.gdse66.backend.dto.UserDTO;
 import lk.ijse.gdse66.backend.entity.Customer;
+import lk.ijse.gdse66.backend.entity.Employee;
 import lk.ijse.gdse66.backend.entity.User;
 import lk.ijse.gdse66.backend.repo.CustomerRepo;
+import lk.ijse.gdse66.backend.repo.EmployeeRepo;
 import lk.ijse.gdse66.backend.repo.UserRepo;
 import lk.ijse.gdse66.backend.services.AuthenticationService;
 import lk.ijse.gdse66.backend.services.JWTService;
 import lk.ijse.gdse66.backend.services.exceptions.DuplicateRecordException;
+import lk.ijse.gdse66.backend.services.exceptions.InvalidAccessRoleException;
+import lk.ijse.gdse66.backend.services.exceptions.NotFoundException;
 import lk.ijse.gdse66.backend.services.util.EmailUtil;
+import lk.ijse.gdse66.backend.util.AccessRoleEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -26,10 +31,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +45,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final CustomerRepo customerRepo;
     private final Path stateFilePath = Paths.get("task_state.txt");
+    private final EmployeeRepo employeeRepo;
 
     @Override
     public JWTAuthResponse signIn(SignInRequest signInRequest) {
@@ -57,18 +60,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JWTAuthResponse signUp(SignUpRequest signUpRequest) {
+        System.out.println(signUpRequest);
         log.info("trying to create a new user account: {}", signUpRequest.getEmail());
-        UserDTO userDTO = UserDTO.builder()
-                .email(signUpRequest.getEmail())
-                .password(passwordEncoder.encode(signUpRequest.getPassword()))
-                .role(signUpRequest.getRole())
-                .build();
 
         User savedUser;
-        if(userRepo.existsById(userDTO.getEmail())){
-            throw new DuplicateRecordException("User with email " + userDTO.getEmail() + " already exists");
+        if(userRepo.existsById(signUpRequest.getEmail())){
+            throw new DuplicateRecordException("User with email " + signUpRequest.getEmail() + " already exists");
         }else{
-            savedUser = userRepo.save(mapper.map(userDTO, User.class));
+            Optional<Employee> employee = Optional.ofNullable(employeeRepo.findByEmail(signUpRequest.getEmail()));
+
+            if (employee.isEmpty()){
+                throw new NotFoundException("Employee with email " + signUpRequest.getEmail() + " not found.");
+            }else{
+                UserDTO userDTO = UserDTO.builder()
+                        .email(signUpRequest.getEmail())
+                        .password(passwordEncoder.encode(signUpRequest.getPassword()))
+                        .role(employee.get().getRole())
+                        .build();
+                savedUser = userRepo.save(mapper.map(userDTO, User.class));
+            }
         }
         String generatedToken = jwtService.generateToken(savedUser);
         return JWTAuthResponse.builder().token(generatedToken).build();
@@ -95,6 +105,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return custStringList;
         }else{
             return custStringList;
+        }
+    }
+
+    @Override
+    public Boolean checkCredentials(UserDTO userDTO) {
+        Optional<User> user = userRepo.findByEmail(userDTO.getEmail());
+        System.out.println(user);
+
+        if(user.isEmpty()){
+            throw new NotFoundException("Admin email not found.");
+        }else{
+            System.out.println(user.get().getRole());
+
+            if(user.get().getRole() == AccessRoleEnum.ADMIN){
+                if(passwordEncoder.matches(userDTO.getPassword(), user.get().getPassword())){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                throw new InvalidAccessRoleException("You don't have permission for this action.\nOnly admins are allowed.");
+            }
         }
     }
 
