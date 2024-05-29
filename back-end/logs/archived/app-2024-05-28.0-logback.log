@@ -1,0 +1,42 @@
+2024-05-28 18:15:24,042 INFO [background-preinit] org.hibernate.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.1.Final
+2024-05-28 18:15:24,153 INFO [restartedMain] org.springframework.boot.StartupInfoLogger: Starting BackEndApplication using Java 17.0.9 with PID 10744 (C:\Users\Owner\OneDrive\Desktop\CourseWork\back-end\target\classes started by Owner in C:\Users\Owner\OneDrive\Desktop\CourseWork\back-end)
+2024-05-28 18:15:24,156 DEBUG [restartedMain] org.springframework.boot.StartupInfoLogger: Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-05-28 18:15:24,158 INFO [restartedMain] org.springframework.boot.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-05-28 18:15:24,293 INFO [restartedMain] org.springframework.boot.logging.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-05-28 18:15:24,293 INFO [restartedMain] org.springframework.boot.logging.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-05-28 18:15:26,187 INFO [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-28 18:15:26,401 INFO [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 197 ms. Found 8 JPA repository interfaces.
+2024-05-28 18:15:27,762 INFO [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-05-28 18:15:27,781 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-05-28 18:15:27,788 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Starting service [Tomcat]
+2024-05-28 18:15:27,789 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-05-28 18:15:27,912 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-05-28 18:15:27,915 INFO [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 3617 ms
+2024-05-28 18:15:28,240 INFO [restartedMain] org.hibernate.jpa.internal.util.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-28 18:15:28,386 INFO [restartedMain] org.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-28 18:15:28,531 INFO [restartedMain] org.hibernate.cache.internal.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-05-28 18:15:29,107 INFO [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-28 18:15:29,171 INFO [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting...
+2024-05-28 18:15:30,089 INFO [restartedMain] com.zaxxer.hikari.pool.HikariPool: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32b9f982
+2024-05-28 18:15:30,091 INFO [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed.
+2024-05-28 18:15:30,297 WARN [restartedMain] org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl: HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-28 18:15:32,986 INFO [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-28 18:15:33,385 INFO [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-28 18:15:34,241 DEBUG [restartedMain] org.springframework.web.filter.GenericFilterBean: Filter 'JWTConfigurationFilter' configured for use
+2024-05-28 18:15:34,367 INFO [restartedMain] org.springframework.data.jpa.repository.query.QueryEnhancerFactory: Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-28 18:15:36,603 WARN [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-28 18:15:37,501 INFO [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@233c5b49, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d05c3fb, org.springframework.security.web.context.SecurityContextHolderFilter@7f29bbba, org.springframework.security.web.header.HeaderWriterFilter@1e5ee772, org.springframework.web.filter.CorsFilter@15f677a1, org.springframework.security.web.authentication.logout.LogoutFilter@74a29cc8, lk.ijse.gdse66.backend.config.JWTConfigurationFilter$$SpringCGLIB$$0@16520e2a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@515deb4e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3bf14a7c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69cb375f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12c20a11, org.springframework.security.web.session.SessionManagementFilter@599b7b12, org.springframework.security.web.access.ExceptionTranslationFilter@1cb65559, org.springframework.security.web.access.intercept.AuthorizationFilter@7171df83]
+2024-05-28 18:15:38,274 INFO [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer: LiveReload server is running on port 35729
+2024-05-28 18:15:38,321 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Starting ProtocolHandler ["http-nio-8080"]
+2024-05-28 18:15:38,367 INFO [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat started on port 8080 (http) with context path '/hello_shoes'
+2024-05-28 18:15:38,386 INFO [restartedMain] org.springframework.boot.StartupInfoLogger: Started BackEndApplication in 15.089 seconds (process running for 22.996)
+2024-05-28 18:17:47,457 INFO [http-nio-8080-exec-5] org.apache.juli.logging.DirectJDKLog: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-28 18:17:47,458 INFO [http-nio-8080-exec-5] org.springframework.web.servlet.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2024-05-28 18:17:47,464 INFO [http-nio-8080-exec-5] org.springframework.web.servlet.FrameworkServlet: Completed initialization in 3 ms
+2024-05-28 18:19:55,313 INFO [http-nio-8080-exec-3] lk.ijse.gdse66.backend.services.impl.AuthenticationServiceImpl: signing in new user: duvinduthathsara@gmail.com
+2024-05-28 18:34:59,633 WARN [http-nio-8080-exec-8] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "Medium": not a valid `int` value]
+2024-05-28 18:35:18,129 WARN [http-nio-8080-exec-6] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "Medium": not a valid `int` value]
+2024-05-28 18:39:42,861 WARN [http-nio-8080-exec-2] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver: Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "undefined": not a valid `int` value]
+2024-05-28 18:50:15,144 INFO [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-28 18:50:15,157 INFO [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2024-05-28 18:50:15,166 INFO [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Shutdown completed.

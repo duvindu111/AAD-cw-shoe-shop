@@ -273,6 +273,9 @@ $("#btnAddSizeQty").click(function (){
                                     <option class="shoe" value="10">10</option>
                                     <option class="shoe" value="11">11</option>
                                     <option class="shoe" value="12">12</option>
+                                    <option class="shoe" value="1001">Small</option>
+                                    <option class="shoe" value="1002">Medium</option>
+                                    <option class="shoe" value="1003">Large</option>
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
@@ -355,8 +358,18 @@ function getAllItems(){
                 $('#tableInventoryBody').append(row);
 
                 $.each(inventory.shoe_size_list, function (index, shoe_size) {
+                    let size = shoe_size.size;
+
+                    if(size == "1001"){
+                        size = "Small";
+                    }else if (size == "1002"){
+                        size = "Medium";
+                    }else if(size == "1003"){
+                        size = "Large";
+                    }
+
                     let tableBody = `<tr>
-                        <td>${shoe_size.size}</td>
+                        <td>${size}</td>
                         <td>${shoe_size.quantity}</td>
                         <td>${shoe_size.status}</td>
                     </tr>`
@@ -418,14 +431,29 @@ function onTableRowClicked() {
 
         $("#sizeQtyRow").empty();
         $.each(row.find(".small-tbl-body tr"), function (index, tr) {
-            let size = $(tr).find("td:eq(0)").text();
+            let size = $(tr).find("td:eq(0)").text().trim();
             let qty = $(tr).find("td:eq(1)").text();
+            let value;
+            switch(size) {
+                case "Small":
+                    value = 1001;
+                    break;
+                case "Medium":
+                    value = 1002;
+                    break;
+                case "Large":
+                    value = 1003;
+                    break;
+                default:
+                    value = size;
+                    break;
+            }
 
             let element = ` <div class="size-qty-container w-100 d-flex flex-wrap py-1 mb-2">
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
                                 <label for="item_size" class="form-label input-label">Size</label>
                                 <select disabled id="item_size" class="form-select form-control select-field">
-                                    <option selected>${size}</option>
+                                    <option value="${value}" selected>${size}</option>
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
@@ -524,6 +552,9 @@ function clearFields() {
                                     <option class="shoe" value="10">10</option>
                                     <option class="shoe" value="11">11</option>
                                     <option class="shoe" value="12">12</option>
+                                    <option class="shoe" value="1001">Small</option>
+                                    <option class="shoe" value="1002">Medium</option>
+                                    <option class="shoe" value="1003">Large</option>
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 col-xl-4 mb-2">
