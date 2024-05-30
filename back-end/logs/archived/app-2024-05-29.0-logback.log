@@ -1,0 +1,39 @@
+2024-05-29 09:58:00,015 INFO [background-preinit] org.hibernate.validator.internal.util.Version: HV000001: Hibernate Validator 8.0.1.Final
+2024-05-29 09:58:00,102 INFO [restartedMain] org.springframework.boot.StartupInfoLogger: Starting BackEndApplication using Java 17.0.9 with PID 18840 (C:\Users\Owner\OneDrive\Desktop\CourseWork\back-end\target\classes started by Owner in C:\Users\Owner\OneDrive\Desktop\CourseWork\back-end)
+2024-05-29 09:58:00,102 DEBUG [restartedMain] org.springframework.boot.StartupInfoLogger: Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-05-29 09:58:00,112 INFO [restartedMain] org.springframework.boot.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-05-29 09:58:00,241 INFO [restartedMain] org.springframework.boot.logging.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-05-29 09:58:00,245 INFO [restartedMain] org.springframework.boot.logging.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-05-29 09:58:01,656 INFO [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-29 09:58:01,779 INFO [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 113 ms. Found 8 JPA repository interfaces.
+2024-05-29 09:58:02,633 INFO [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-05-29 09:58:02,645 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-05-29 09:58:02,648 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Starting service [Tomcat]
+2024-05-29 09:58:02,648 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-05-29 09:58:02,722 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-05-29 09:58:02,726 INFO [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 2475 ms
+2024-05-29 09:58:02,931 INFO [restartedMain] org.hibernate.jpa.internal.util.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-29 09:58:03,031 INFO [restartedMain] org.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-29 09:58:03,082 INFO [restartedMain] org.hibernate.cache.internal.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-05-29 09:58:03,454 INFO [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-29 09:58:03,488 INFO [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Starting...
+2024-05-29 09:58:04,073 INFO [restartedMain] com.zaxxer.hikari.pool.HikariPool: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@28ea77f7
+2024-05-29 09:58:04,073 INFO [restartedMain] com.zaxxer.hikari.HikariDataSource: HikariPool-1 - Start completed.
+2024-05-29 09:58:04,199 WARN [restartedMain] org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl: HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-29 09:58:06,161 INFO [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-29 09:58:06,351 INFO [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-29 09:58:06,833 DEBUG [restartedMain] org.springframework.web.filter.GenericFilterBean: Filter 'JWTConfigurationFilter' configured for use
+2024-05-29 09:58:06,953 INFO [restartedMain] org.springframework.data.jpa.repository.query.QueryEnhancerFactory: Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-29 09:58:08,451 WARN [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-29 09:58:08,859 INFO [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@42cc95cc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@653afadf, org.springframework.security.web.context.SecurityContextHolderFilter@1a333e6f, org.springframework.security.web.header.HeaderWriterFilter@2236322f, org.springframework.web.filter.CorsFilter@55fbf6e0, org.springframework.security.web.authentication.logout.LogoutFilter@110b57e9, lk.ijse.gdse66.backend.config.JWTConfigurationFilter$$SpringCGLIB$$0@197c8315, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@31e2d67c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2eab6ebe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f4f9504, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@492671e8, org.springframework.security.web.session.SessionManagementFilter@38854a77, org.springframework.security.web.access.ExceptionTranslationFilter@10ac26cc, org.springframework.security.web.access.intercept.AuthorizationFilter@179fff93]
+2024-05-29 09:58:09,208 INFO [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer: LiveReload server is running on port 35729
+2024-05-29 09:58:09,234 INFO [restartedMain] org.apache.juli.logging.DirectJDKLog: Starting ProtocolHandler ["http-nio-8080"]
+2024-05-29 09:58:09,276 INFO [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat started on port 8080 (http) with context path '/hello_shoes'
+2024-05-29 09:58:09,288 INFO [restartedMain] org.springframework.boot.StartupInfoLogger: Started BackEndApplication in 9.846 seconds (process running for 14.755)
+2024-05-29 09:58:54,006 INFO [http-nio-8080-exec-1] org.apache.juli.logging.DirectJDKLog: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-29 09:58:54,006 INFO [http-nio-8080-exec-1] org.springframework.web.servlet.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2024-05-29 09:58:54,006 INFO [http-nio-8080-exec-1] org.springframework.web.servlet.FrameworkServlet: Completed initialization in 0 ms
+2024-05-29 11:31:49,314 WARN [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool$HouseKeeper: HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=34m14s173ms102µs).
+2024-05-29 13:05:44,822 WARN [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool$HouseKeeper: HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h5m25s39ms486µs500ns).
+2024-05-29 18:34:57,689 WARN [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool$HouseKeeper: HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h30m10s43ms712µs300ns).
+2024-05-29 21:22:23,214 WARN [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool$HouseKeeper: HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h48m54s537ms535µs900ns).

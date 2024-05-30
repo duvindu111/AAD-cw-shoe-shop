@@ -26,7 +26,16 @@ function getAllItems(){
                 $("#product-grid").append(card);
 
                 $.each(inventory.shoe_size_list, function (index, shoe_size) {
-                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${shoe_size.size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
+                    let size = shoe_size.size;
+                    if(size == "1001"){
+                        size = "Small";
+                    }else if (size == "1002"){
+                        size = "Medium";
+                    }else if(size == "1003"){
+                        size = "Large";
+                    }
+
+                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
                     $("#product-grid .card-body:last").append(ptag);
                 });
             });
@@ -79,7 +88,16 @@ $("#price-search").click(function () {
                 $("#product-grid").append(card);
 
                 $.each(inventory.shoe_size_list, function (index, shoe_size) {
-                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${shoe_size.size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
+                    let size = shoe_size.size;
+                    if(size == "1001"){
+                        size = "Small";
+                    }else if (size == "1002"){
+                        size = "Medium";
+                    }else if(size == "1003"){
+                        size = "Large";
+                    }
+
+                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
                     $("#product-grid .card-body:last").append(ptag);
                 });
             });
@@ -126,7 +144,16 @@ $("#name-search").keyup(function () {
                 $("#product-grid").append(card);
 
                 $.each(inventory.shoe_size_list, function (index, shoe_size) {
-                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${shoe_size.size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
+                    let size = shoe_size.size;
+                    if(size == "1001"){
+                        size = "Small";
+                    }else if (size == "1002"){
+                        size = "Medium";
+                    }else if(size == "1003"){
+                        size = "Large";
+                    }
+
+                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
                     $("#product-grid .card-body:last").append(ptag);
                 });
             });
@@ -167,7 +194,15 @@ $(".rbGender").change(function (){
                 $("#product-grid").append(card);
 
                 $.each(inventory.shoe_size_list, function (index, shoe_size) {
-                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${shoe_size.size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
+                    let size = shoe_size.size;
+                    if(size == "1001"){
+                        size = "Small";
+                    }else if (size == "1002"){
+                        size = "Medium";
+                    }else if(size == "1003"){
+                        size = "Large";
+                    }
+                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
                     $("#product-grid .card-body:last").append(ptag);
                 });
             });
@@ -208,7 +243,15 @@ $(".rbOccasion").change(function (){
                 $("#product-grid").append(card);
 
                 $.each(inventory.shoe_size_list, function (index, shoe_size) {
-                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${shoe_size.size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
+                    let size = shoe_size.size;
+                    if(size == "1001"){
+                        size = "Small";
+                    }else if (size == "1002"){
+                        size = "Medium";
+                    }else if(size == "1003"){
+                        size = "Large";
+                    }
+                    let ptag = `<p class="card-text" style="font-size: 12px; margin: 0">Size ${size}: &nbsp;${shoe_size.quantity} - ${shoe_size.status}</p>`
                     $("#product-grid .card-body:last").append(ptag);
                 });
             });
