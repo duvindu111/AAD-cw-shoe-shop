@@ -154,29 +154,29 @@ $("#btn_add_cart").click(function (){
 });
 
 $("#btn_confirm").click(function(){
-   // if($("#tableCartBody tr").length > 0){
-   //     if($("#payment_method").val() != null){
-   //         if($("#name_of_user").text() != ""){
-   //             if($("#code_of_employee").text() != ""){
-                   ////////////////////////////////////////////////
+   if($("#tableCartBody tr").length > 0){
+       if($("#payment_method").val() != null){
+           if($("#name_of_user").text() != ""){
+               if($("#code_of_employee").text() != ""){
+                   //////////////////////////////////////////////
                    if($("#payment_method").val() == "CARD"){
-                          $("#pm_card_modal").modal('show');
+                              $("#pm_card_modal").modal('show');
                    }else if($("#payment_method").val() == "CASH"){
                           $("#pm_cash_modal").modal('show');
                    }
-                   ////////////////////////////////////////////////
-   //             }else{
-   //                 alert("Seems to be a problem with the user account. Please check again.")
-   //             }
-   //         }else{
-   //             alert("Seems to be a problem with the user account. Please check again.")
-   //         }
-   //     }else{
-   //         alert("Please select a payment method");
-   //     }
-   // }else{
-   //     alert("Please add items to the cart first");
-   // }
+                   //////////////////////////////////////////////
+               }else{
+                   alert("Seems to be a problem with the user account. Please check again.")
+               }
+           }else{
+               alert("Seems to be a problem with the user account. Please check again.")
+           }
+       }else{
+           alert("Please select a payment method");
+       }
+   }else{
+       alert("Please add items to the cart first");
+   }
 });
 
 $(".btn_place_order").click(function (){

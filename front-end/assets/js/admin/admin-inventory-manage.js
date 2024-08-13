@@ -586,7 +586,7 @@ function validateFields(){
         clearErrorLabel("#item_name");
         validated = false;
     }
-    if (!validate(supp_code, /^SUPP-\d+$/)) {
+    if (!validate(supp_code, /^SUP-\d+$/)) {
         $("#el_supp_code").css("display", "block");
         clearErrorLabel("#item_supp_code");
         validated = false;
